@@ -9,3 +9,5 @@ build/
 .pytest_cache/
 .ruff_cache/
 .env
+# Raw source data (keep local, do not commit)
+/data/raw/

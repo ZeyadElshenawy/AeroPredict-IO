@@ -1,4 +1,4 @@
-﻿[build-system]
+[build-system]
 requires = ["setuptools>=75"]
 build-backend = "setuptools.build_meta"
 
@@ -7,7 +7,11 @@ name = "flightops-ml"
 version = "0.1.0"
 description = "An end-to-end flight departure delay risk prediction and monitoring platform."
 requires-python = ">=3.13"
-dependencies = []
+dependencies = [
+    "requests>=2.32,<3",
+    "psycopg[binary]>=3.2,<4",
+    "python-dotenv>=1,<2",
+]
 
 [project.optional-dependencies]
 dev = [
