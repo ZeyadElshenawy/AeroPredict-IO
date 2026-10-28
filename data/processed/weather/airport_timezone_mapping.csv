@@ -1,0 +1,353 @@
+origin_airport_id,airport_code,airport_name,state_territory,station_id,standard_offset_bts,iana_timezone
+10135,ABE,Lehigh Valley International,PA,ABE,-0500,America/New_York
+10136,ABI,Abilene Regional,TX,ABI,-0600,America/Chicago
+10140,ABQ,Albuquerque International Sunport,NM,ABQ,-0700,America/Denver
+10141,ABR,Aberdeen Regional,SD,ABR,-0600,America/Chicago
+10146,ABY,Southwest Georgia Regional,GA,ABY,-0500,America/New_York
+10154,ACK,Nantucket Memorial,MA,ACK,-0500,America/New_York
+10155,ACT,Waco Regional,TX,ACT,-0600,America/Chicago
+10157,ACV,California Redwood Coast Humboldt County,CA,ACV,-0800,America/Los_Angeles
+10158,ACY,Atlantic City International,NJ,ACY,-0500,America/New_York
+10165,ADK,Adak,AK,PADK,-1000,America/Adak
+10170,ADQ,Kodiak Airport,AK,PADQ,-0900,America/Anchorage
+10185,AEX,Alexandria International,LA,AEX,-0600,America/Chicago
+10208,AGS,Augusta Regional at Bush Field,GA,AGS,-0500,America/New_York
+10245,AKN,King Salmon Airport,AK,PAKN,-0900,America/Anchorage
+10257,ALB,Albany International,NY,ALB,-0500,America/New_York
+10268,ALO,Waterloo Regional,IA,ALO,-0600,America/Chicago
+10279,AMA,Rick Husband Amarillo International,TX,AMA,-0600,America/Chicago
+10299,ANC,Ted Stevens Anchorage International,AK,PANC,-0900,America/Anchorage
+10333,APN,Alpena County Regional,MI,APN,-0500,America/Detroit
+10372,ASE,Aspen Pitkin County Sardy Field,CO,ASE,-0700,America/Denver
+10397,ATL,Hartsfield-Jackson Atlanta International,GA,ATL,-0500,America/New_York
+10408,ATW,Appleton International,WI,ATW,-0600,America/Chicago
+10409,ATY,Watertown Regional,SD,ATY,-0600,America/Chicago
+10423,AUS,Austin - Bergstrom International,TX,AUS,-0600,America/Chicago
+10431,AVL,Asheville Regional,NC,AVL,-0500,America/New_York
+10434,AVP,Wilkes Barre Scranton International,PA,AVP,-0500,America/New_York
+10466,AZA,Mesa Gateway,AZ,IWA,-0700,America/Phoenix
+10469,AZO,Kalamazoo/Battle Creek International,MI,AZO,-0500,America/Detroit
+10529,BDL,Bradley International,CT,BDL,-0500,America/New_York
+10551,BET,Bethel Airport,AK,PABE,-0900,America/Anchorage
+10558,BFF,Scottsbluff W Neb Regional Wm B Heilig Field,NE,BFF,-0700,America/Denver
+10561,BFL,Meadows Field,CA,BFL,-0800,America/Los_Angeles
+10577,BGM,Greater Binghamton/Edwin A. Link Field,NY,BGM,-0500,America/New_York
+10581,BGR,Bangor International,ME,BGR,-0500,America/New_York
+10599,BHM,Birmingham-Shuttlesworth International,AL,BHM,-0600,America/Chicago
+10617,BIH,Bishop Airport,CA,BIH,-0800,America/Los_Angeles
+10620,BIL,Billings Logan International,MT,BIL,-0700,America/Denver
+10627,BIS,Bismarck Municipal,ND,BIS,-0600,America/Chicago
+10631,BJI,Bemidji Regional,MN,BJI,-0600,America/Chicago
+10666,BLI,Bellingham International,WA,BLI,-0800,America/Los_Angeles
+10676,BLV,Scott AFB MidAmerica St Louis,IL,BLV,-0600,America/Chicago
+10685,BMI,Central Il Regional Airport at Bloomington,IL,BMI,-0600,America/Chicago
+10693,BNA,Nashville International,TN,BNA,-0600,America/Chicago
+10713,BOI,Boise Air Terminal,ID,BOI,-0700,America/Boise
+10721,BOS,Logan International,MA,BOS,-0500,America/New_York
+10728,BPT,Jack Brooks Regional,TX,BPT,-0600,America/Chicago
+10732,BQN,Rafael Hernandez,PR,TJBQ,-0400,America/Puerto_Rico
+10739,BRD,Brainerd Lakes Regional,MN,BRD,-0600,America/Chicago
+10747,BRO,Brownsville South Padre Island International,TX,BRO,-0600,America/Chicago
+10754,BRW,Wiley Post/Will Rogers Memorial,AK,PABR,-0900,America/Anchorage
+10779,BTM,Bert Mooney,MT,BTM,-0700,America/Denver
+10781,BTR,Baton Rouge Metropolitan/Ryan Field,LA,BTR,-0600,America/Chicago
+10785,BTV,Patrick Leahy Burlington International,VT,BTV,-0500,America/New_York
+10792,BUF,Buffalo Niagara International,NY,BUF,-0500,America/New_York
+10800,BUR,Bob Hope,CA,BUR,-0800,America/Los_Angeles
+10821,BWI,Baltimore/Washington International Thurgood Marshall,MD,BWI,-0500,America/New_York
+10849,BZN,Bozeman Yellowstone International,MT,BZN,-0700,America/Denver
+10868,CAE,Columbia Metropolitan,SC,CAE,-0500,America/New_York
+10874,CAK,Akron-Canton Regional,OH,CAK,-0500,America/New_York
+10918,CDC,Cedar City Regional,UT,CDC,-0700,America/Denver
+10926,CDV,Merle K Mudhole Smith,AK,PACV,-0900,America/Anchorage
+10980,CHA,Lovell Field,TN,CHA,-0500,America/New_York
+10990,CHO,Charlottesville Albemarle,VA,CHO,-0500,America/New_York
+10994,CHS,Charleston AFB/International,SC,CHS,-0500,America/New_York
+11003,CID,The Eastern Iowa,IA,CID,-0600,America/Chicago
+11013,CIU,Chippewa County International,MI,CIU,-0500,America/Detroit
+11027,CKB,North Central West Virginia,WV,CKB,-0500,America/New_York
+11041,CLD,McClellan-Palomar,CA,CRQ,-0800,America/Los_Angeles
+11042,CLE,Cleveland-Hopkins International,OH,CLE,-0500,America/New_York
+11049,CLL,Easterwood Field,TX,CLL,-0600,America/Chicago
+11057,CLT,Charlotte Douglas International,NC,CLT,-0500,America/New_York
+11066,CMH,John Glenn Columbus International,OH,CMH,-0500,America/New_York
+11067,CMI,University of Illinois/Willard,IL,CMI,-0600,America/Chicago
+11076,CMX,Houghton County Memorial,MI,CMX,-0500,America/Detroit
+11097,COD,Yellowstone Regional,WY,COD,-0700,America/Denver
+11109,COS,City of Colorado Springs Municipal,CO,COS,-0700,America/Denver
+11111,COU,Columbia Regional,MO,COU,-0600,America/Chicago
+11122,CPR,Casper/Natrona County International,WY,CPR,-0700,America/Denver
+11140,CRP,Corpus Christi International,TX,CRP,-0600,America/Chicago
+11146,CRW,West Virginia International Yeager,WV,CRW,-0500,America/New_York
+11193,CVG,Cincinnati/Northern Kentucky International,KY,CVG,-0500,America/New_York
+11203,CWA,Central Wisconsin,WI,CWA,-0600,America/Chicago
+11233,CYS,Cheyenne Regional/Jerry Olson Field,WY,CYS,-0700,America/Denver
+11252,DAB,Daytona Beach International,FL,DAB,-0500,America/New_York
+11259,DAL,Dallas Love Field,TX,DAL,-0600,America/Chicago
+11267,DAY,James M Cox/Dayton International,OH,DAY,-0500,America/New_York
+11278,DCA,Ronald Reagan Washington National,VA,DCA,-0500,America/New_York
+11283,DDC,Dodge City Regional,KS,DDC,-0600,America/Chicago
+11288,DEC,Decatur Airport,IL,DEC,-0600,America/Chicago
+11292,DEN,Denver International,CO,DEN,-0700,America/Denver
+11298,DFW,Dallas/Fort Worth International,TX,DFW,-0600,America/Chicago
+11308,DHN,Dothan Regional,AL,DHN,-0600,America/Chicago
+11315,DIK,Dickinson - Theodore Roosevelt Regional,ND,DIK,-0700,America/Denver
+11336,DLG,Dillingham Airport,AK,PADL,-0900,America/Anchorage
+11337,DLH,Duluth International,MN,DLH,-0600,America/Chicago
+11413,DRO,Durango La Plata County,CO,DRO,-0700,America/Denver
+11423,DSM,Des Moines International,IA,DSM,-0600,America/Chicago
+11433,DTW,Detroit Metro Wayne County,MI,DTW,-0500,America/Detroit
+11447,DVL,Devils Lake Regional,ND,DVL,-0600,America/Chicago
+11468,EAR,Kearney Regional,NE,EAR,-0600,America/Chicago
+11471,EAU,Chippewa Valley Regional,WI,EAU,-0600,America/Chicago
+11481,ECP,Northwest Florida Beaches International,FL,ECP,-0600,America/Chicago
+11503,EGE,Eagle County Regional,CO,EGE,-0700,America/Denver
+11525,EKO,Elko Regional,NV,EKO,-0800,America/Los_Angeles
+11537,ELM,Elmira/Corning Regional,NY,ELM,-0500,America/New_York
+11540,ELP,El Paso International,TX,ELP,-0700,America/Denver
+11577,ERI,Erie International/Tom Ridge Field,PA,ERI,-0500,America/New_York
+11587,ESC,Delta County,MI,ESC,-0500,America/Menominee
+11603,EUG,Mahlon Sweet Field,OR,EUG,-0800,America/Los_Angeles
+11612,EVV,Evansville Regional,IN,EVV,-0600,America/Chicago
+11617,EWN,Coastal Carolina Regional,NC,EWN,-0500,America/New_York
+11618,EWR,Newark Liberty International,NJ,EWR,-0500,America/New_York
+11624,EYW,Key West International,FL,EYW,-0500,America/New_York
+11630,FAI,Fairbanks International,AK,PAFA,-0900,America/Anchorage
+11637,FAR,Hector International,ND,FAR,-0600,America/Chicago
+11638,FAT,Fresno Yosemite International,CA,FAT,-0800,America/Los_Angeles
+11641,FAY,Fayetteville Regional/Grannis Field,NC,FAY,-0500,America/New_York
+11648,FCA,Glacier Park International,MT,GPI,-0700,America/Denver
+11695,FLG,Flagstaff Pulliam,AZ,FLG,-0700,America/Phoenix
+11697,FLL,Fort Lauderdale-Hollywood International,FL,FLL,-0500,America/New_York
+11711,FMN,Four Corners Regional,NM,FMN,-0700,America/Denver
+11721,FNT,Bishop International,MI,FNT,-0500,America/Detroit
+11725,FOD,Fort Dodge Regional,IA,FOD,-0600,America/Chicago
+11775,FSD,Joe Foss Field,SD,FSD,-0600,America/Chicago
+11778,FSM,Fort Smith Regional,AR,FSM,-0600,America/Chicago
+11823,FWA,Fort Wayne International,IN,FWA,-0500,America/Indiana/Indianapolis
+11865,GCC,Northeast Wyoming Regional,WY,GCC,-0700,America/Denver
+11867,GCK,Garden City Regional,KS,GCK,-0600,America/Chicago
+11884,GEG,Spokane International,WA,GEG,-0800,America/Los_Angeles
+11898,GFK,Grand Forks International,ND,GFK,-0600,America/Chicago
+11905,GGG,East Texas Regional,TX,GGG,-0600,America/Chicago
+11921,GJT,Grand Junction Regional,CO,GJT,-0700,America/Denver
+11953,GNV,Gainesville Regional,FL,GNV,-0500,America/New_York
+11973,GPT,Gulfport-Biloxi International,MS,GPT,-0600,America/Chicago
+11977,GRB,Green Bay Austin Straubel International,WI,GRB,-0600,America/Chicago
+11980,GRI,Central Nebraska Regional,NE,GRI,-0600,America/Chicago
+11982,GRK,Robert Gray AAF,TX,GRK,-0600,America/Chicago
+11986,GRR,Gerald R. Ford International,MI,GRR,-0500,America/Detroit
+11995,GSO,Piedmont Triad International,NC,GSO,-0500,America/New_York
+11996,GSP,Greenville-Spartanburg International,SC,GSP,-0500,America/New_York
+11997,GST,Gustavus Airport,AK,PAGS,-0900,America/Anchorage
+12003,GTF,Great Falls International,MT,GTF,-0700,America/Denver
+12007,GTR,Golden Triangle Regional,MS,GTR,-0600,America/Chicago
+12012,GUC,Gunnison-Crested Butte Regional,CO,GUC,-0700,America/Denver
+12016,GUM,Guam International,GU,PGUM,+1000,Pacific/Guam
+12094,HDN,Yampa Valley,CO,HDN,-0700,America/Denver
+12119,HGR,Hagerstown Regional-Richard A. Henson Field,MD,HGR,-0500,America/New_York
+12124,HHH,Hilton Head Airport,SC,HXD,-0500,America/New_York
+12129,HIB,Range Regional,MN,HIB,-0600,America/Chicago
+12156,HLN,Helena Regional,MT,HLN,-0700,America/Denver
+12173,HNL,Daniel K Inouye International,HI,PHNL,-1000,Pacific/Honolulu
+12177,HOB,Lea County Regional,NM,HOB,-0700,America/Denver
+12191,HOU,William P Hobby,TX,HOU,-0600,America/Chicago
+12197,HPN,Westchester County,NY,HPN,-0500,America/New_York
+12206,HRL,Valley International,TX,HRL,-0600,America/Chicago
+12217,HSV,Huntsville International-Carl T Jones Field,AL,HSV,-0600,America/Chicago
+12223,HTS,Tri-State/Milton J. Ferguson Field,WV,HTS,-0500,America/New_York
+12250,HYA,Cape Cod Gateway,MA,HYA,-0500,America/New_York
+12255,HYS,Hays Regional,KS,HYS,-0600,America/Chicago
+12264,IAD,Washington Dulles International,VA,IAD,-0500,America/New_York
+12265,IAG,Niagara Falls International,NY,IAG,-0500,America/New_York
+12266,IAH,George Bush Intercontinental/Houston,TX,IAH,-0600,America/Chicago
+12278,ICT,Wichita Dwight D Eisenhower National,KS,ICT,-0600,America/Chicago
+12280,IDA,Idaho Falls Regional,ID,IDA,-0700,America/Boise
+12323,ILM,Wilmington International,NC,ILM,-0500,America/New_York
+12335,IMT,Ford,MI,IMT,-0600,America/Menominee
+12339,IND,Indianapolis International,IN,IND,-0500,America/Indiana/Indianapolis
+12343,INL,Falls International Einarson Field,MN,INL,-0600,America/Chicago
+12391,ISP,Long Island MacArthur,NY,ISP,-0500,America/New_York
+12397,ITH,Ithaca Tompkins International,NY,ITH,-0500,America/New_York
+12402,ITO,Hilo International,HI,PHTO,-1000,Pacific/Honolulu
+12441,JAC,Jackson Hole,WY,JAC,-0700,America/Denver
+12448,JAN,Jackson Medgar Wiley Evers International,MS,JAN,-0600,America/Chicago
+12451,JAX,Jacksonville International,FL,JAX,-0500,America/New_York
+12478,JFK,John F. Kennedy International,NY,JFK,-0500,America/New_York
+12511,JLN,Joplin Regional,MO,JLN,-0600,America/Chicago
+12519,JMS,Jamestown Regional,ND,JMS,-0600,America/Chicago
+12523,JNU,Juneau International,AK,PAJN,-0900,America/Anchorage
+12544,USA,Concord Padgett Regional,NC,JQF,-0500,America/New_York
+12559,JST,John Murtha Johnstown-Cambria County,PA,JST,-0500,America/New_York
+12758,KOA,Ellison Onizuka Kona International at Keahole,HI,PHKO,-1000,Pacific/Honolulu
+12819,KTN,Ketchikan International,AK,PAKT,-0900,America/Anchorage
+12878,LAF,Purdue University,IN,LAF,-0500,America/Indiana/Indianapolis
+12884,LAN,Capital Region International,MI,LAN,-0500,America/Detroit
+12888,LAR,Laramie Regional,WY,LAR,-0700,America/Denver
+12889,LAS,Harry Reid International,NV,LAS,-0800,America/Los_Angeles
+12891,LAW,Lawton-Fort Sill Regional,OK,LAW,-0600,America/Chicago
+12892,LAX,Los Angeles International,CA,LAX,-0800,America/Los_Angeles
+12896,LBB,Lubbock Preston Smith International,TX,LBB,-0600,America/Chicago
+12898,LBE,Arnold Palmer Regional,PA,LBE,-0500,America/New_York
+12899,LBF,North Platte Regional Airport Lee Bird Field,NE,LBF,-0600,America/Chicago
+12902,LBL,Liberal Mid-America Regional,KS,LBL,-0600,America/Chicago
+12915,LCH,Lake Charles Regional,LA,LCH,-0600,America/Chicago
+12917,LCK,Rickenbacker International,OH,LCK,-0500,America/New_York
+12945,LEX,Blue Grass,KY,LEX,-0500,America/New_York
+12951,LFT,Lafayette Regional Paul Fournet Field,LA,LFT,-0600,America/Chicago
+12953,LGA,LaGuardia,NY,LGA,-0500,America/New_York
+12954,LGB,Long Beach Airport,CA,LGB,-0800,America/Los_Angeles
+12982,LIH,Lihue Airport,HI,PHLI,-1000,Pacific/Honolulu
+12992,LIT,Bill and Hillary Clinton Nat Adams Field,AR,LIT,-0600,America/Chicago
+13029,LNK,Lincoln Airport,NE,LNK,-0600,America/Chicago
+13061,LRD,Laredo International,TX,LRD,-0600,America/Chicago
+13076,LSE,La Crosse Regional,WI,LSE,-0600,America/Chicago
+13127,LWS,Lewiston Nez Perce County,ID,LWS,-0800,America/Los_Angeles
+13158,MAF,Midland International Air and Space Port,TX,MAF,-0600,America/Chicago
+13184,MBS,MBS International,MI,MBS,-0500,America/Detroit
+13198,MCI,Kansas City International,MO,MCI,-0600,America/Chicago
+13204,MCO,Orlando International,FL,MCO,-0500,America/New_York
+13211,MCW,Mason City Municipal,IA,MCW,-0600,America/Chicago
+13230,MDT,Harrisburg International,PA,MDT,-0500,America/New_York
+13232,MDW,Chicago Midway International,IL,MDW,-0600,America/Chicago
+13241,MEI,Key Field,MS,MEI,-0600,America/Chicago
+13244,MEM,Memphis International,TN,MEM,-0600,America/Chicago
+13256,MFE,McAllen International,TX,MFE,-0600,America/Chicago
+13264,MFR,Rogue Valley International - Medford,OR,MFR,-0800,America/Los_Angeles
+13277,MGM,Montgomery Regional,AL,MGM,-0600,America/Chicago
+13282,MGW,Morgantown Municipal Walter L Bill Hart Field,WV,MGW,-0500,America/New_York
+13290,MHK,Manhattan Regional,KS,MHK,-0600,America/Chicago
+13296,MHT,Manchester Boston Regional,NH,MHT,-0500,America/New_York
+13303,MIA,Miami International,FL,MIA,-0500,America/New_York
+13342,MKE,General Mitchell International,WI,MKE,-0600,America/Chicago
+13360,MLB,Melbourne Orlando International,FL,MLB,-0500,America/New_York
+13367,MLI,Quad Cities International,IL,MLI,-0600,America/Chicago
+13377,MLU,Monroe Regional,LA,MLU,-0600,America/Chicago
+13422,MOB,Mobile Regional,AL,MOB,-0600,America/Chicago
+13433,MOT,Minot International,ND,MOT,-0600,America/Chicago
+13459,MQT,Marquette Sawyer Regional,MI,SAW,-0500,America/Detroit
+13476,MRY,Monterey Regional,CA,MRY,-0800,America/Los_Angeles
+13485,MSN,Dane County Regional-Truax Field,WI,MSN,-0600,America/Chicago
+13486,MSO,Missoula Montana,MT,MSO,-0700,America/Denver
+13487,MSP,Minneapolis-St Paul International,MN,MSP,-0600,America/Chicago
+13495,MSY,Louis Armstrong New Orleans International,LA,MSY,-0600,America/Chicago
+13502,MTJ,Montrose Regional,CO,MTJ,-0700,America/Denver
+13541,MVY,Martha's Vineyard Airport,MA,MVY,-0500,America/New_York
+13577,MYR,Myrtle Beach International,SC,MYR,-0500,America/New_York
+13795,OAJ,Albert J Ellis,NC,OAJ,-0500,America/New_York
+13796,OAK,Oakland International,CA,OAK,-0800,America/Los_Angeles
+13830,OGG,Kahului Airport,HI,PHOG,-1000,Pacific/Honolulu
+13851,OKC,Okc Will Rogers International,OK,OKC,-0600,America/Chicago
+13871,OMA,Eppley Airfield,NE,OMA,-0600,America/Chicago
+13873,OME,Nome Airport,AK,PAOM,-0900,America/Anchorage
+13891,ONT,Ontario International,CA,ONT,-0800,America/Los_Angeles
+13930,ORD,Chicago O'Hare International,IL,ORD,-0600,America/Chicago
+13931,ORF,Norfolk International,VA,ORF,-0500,America/New_York
+13933,ORH,Worcester Regional,MA,ORH,-0500,America/New_York
+13964,OTH,Southwest Oregon Regional,OR,OTH,-0800,America/Los_Angeles
+13970,OTZ,Ralph Wien Memorial,AK,PAOT,-0900,America/Anchorage
+14004,PAE,Seattle Paine Field International,WA,PAE,-0800,America/Los_Angeles
+14025,PBG,Plattsburgh International,NY,PBG,-0500,America/New_York
+14027,PBI,Palm Beach International,FL,DJT,-0500,America/New_York
+14057,PDX,Portland International,OR,PDX,-0800,America/Los_Angeles
+14082,PGD,Punta Gorda Airport,FL,PGD,-0500,America/New_York
+14098,PHF,Newport News/Williamsburg International,VA,PHF,-0500,America/New_York
+14100,PHL,Philadelphia International,PA,PHL,-0500,America/New_York
+14107,PHX,Phoenix Sky Harbor International,AZ,PHX,-0700,America/Phoenix
+14108,PIA,General Downing - Peoria International,IL,PIA,-0600,America/Chicago
+14109,PIB,Hattiesburg-Laurel Regional,MS,PIB,-0600,America/Chicago
+14112,PIE,St Pete Clearwater International,FL,PIE,-0500,America/New_York
+14113,PIH,Pocatello Regional,ID,PIH,-0700,America/Boise
+14120,PIR,Pierre Regional,SD,PIR,-0600,America/Chicago
+14122,PIT,Pittsburgh International,PA,PIT,-0500,America/New_York
+14150,PLN,Pellston Regional Emmet County,MI,PLN,-0500,America/Detroit
+14193,PNS,Pensacola International,FL,PNS,-0600,America/Chicago
+14222,PPG,Pago Pago International,AS,NSTU,-1100,Pacific/Pago_Pago
+14231,PQI,Presque Isle International,ME,PQI,-0500,America/New_York
+14237,PRC,Prescott Regional Ernest A Love Field,AZ,PRC,-0700,America/Phoenix
+14252,PSC,Tri Cities,WA,PSC,-0800,America/Los_Angeles
+14254,PSE,Mercedita,PR,TJPS,-0400,America/Puerto_Rico
+14256,PSG,Petersburg James A Johnson,AK,PAPG,-0900,America/Anchorage
+14259,PSM,Portsmouth International at Pease,NH,PSM,-0500,America/New_York
+14262,PSP,Palm Springs International,CA,PSP,-0800,America/Los_Angeles
+14307,PVD,Rhode Island Tf Green International,RI,PVD,-0500,America/New_York
+14314,PVU,Provo Municipal,UT,PVU,-0700,America/Denver
+14321,PWM,Portland International Jetport,ME,PWM,-0500,America/New_York
+14457,RAP,Rapid City Regional,SD,RAP,-0700,America/Denver
+14487,RDD,Redding Regional,CA,RDD,-0800,America/Los_Angeles
+14489,RDM,Roberts Field,OR,RDM,-0800,America/Los_Angeles
+14492,RDU,Raleigh-Durham International,NC,RDU,-0500,America/New_York
+14512,RFD,Chicago/Rockford International,IL,RFD,-0600,America/Chicago
+14520,RHI,Rhinelander/Oneida County,WI,RHI,-0600,America/Chicago
+14524,RIC,Richmond International,VA,RIC,-0500,America/New_York
+14534,RIW,Central Wyoming Regional,WY,RIW,-0700,America/Denver
+14543,RKS,Southwest Wyoming Regional,WY,RKS,-0700,America/Denver
+14570,RNO,Reno/Tahoe International,NV,RNO,-0800,America/Los_Angeles
+14574,ROA,Roanoke Blacksburg Regional,VA,ROA,-0500,America/New_York
+14576,ROC,Frederick Douglass Grtr Rochester International,NY,ROC,-0500,America/New_York
+14588,ROW,Roswell Air Center,NM,ROW,-0700,America/Denver
+14633,RST,Rochester International,MN,RST,-0600,America/Chicago
+14635,RSW,Southwest Florida International,FL,RSW,-0500,America/New_York
+14674,SAF,Santa Fe Regional,NM,SAF,-0700,America/Denver
+14679,SAN,San Diego International,CA,SAN,-0800,America/Los_Angeles
+14683,SAT,San Antonio International,TX,SAT,-0600,America/Chicago
+14685,SAV,Savannah/Hilton Head International,GA,SAV,-0500,America/New_York
+14689,SBA,Santa Barbara Municipal,CA,SBA,-0800,America/Los_Angeles
+14696,SBN,South Bend International,IN,SBN,-0500,America/Indiana/Indianapolis
+14698,SBP,San Luis Obispo County Regional,CA,SBP,-0800,America/Los_Angeles
+14709,SCC,Deadhorse Airport,AK,PASC,-0900,America/Anchorage
+14711,SCE,State College Regional,PA,UNV,-0500,America/New_York
+14716,SCK,Stockton Metro,CA,SCK,-0800,America/Los_Angeles
+14730,SDF,Louisville Muhammad Ali International,KY,SDF,-0500,America/New_York
+14747,SEA,Seattle/Tacoma International,WA,SEA,-0800,America/Los_Angeles
+14761,SFB,Orlando Sanford International,FL,SFB,-0500,America/New_York
+14771,SFO,San Francisco International,CA,SFO,-0800,America/Los_Angeles
+14783,SGF,Springfield-Branson National,MO,SGF,-0600,America/Chicago
+14794,SGU,St George Regional,UT,SGU,-0700,America/Denver
+14812,SHR,Sheridan County,WY,SHR,-0700,America/Denver
+14814,SHV,Shreveport Regional,LA,SHV,-0600,America/Chicago
+14828,SIT,Sitka Rocky Gutierrez,AK,PASI,-0900,America/Anchorage
+14831,SJC,Norman Y. Mineta San Jose International,CA,SJC,-0800,America/Los_Angeles
+14842,SJT,San Angelo Regional/Mathis Field,TX,SJT,-0600,America/Chicago
+14843,SJU,Luis Munoz Marin International,PR,TJSJ,-0400,America/Puerto_Rico
+14869,SLC,Salt Lake City International,UT,SLC,-0700,America/Denver
+14877,SLN,Salina Regional,KS,SLN,-0600,America/Chicago
+14893,SMF,Sacramento International,CA,SMF,-0800,America/Los_Angeles
+14905,SMX,Santa Maria Public/Capt. G. Allan Hancock Field,CA,SMX,-0800,America/Los_Angeles
+14908,SNA,John Wayne Airport-Orange County,CA,SNA,-0800,America/Los_Angeles
+14952,SPI,Abraham Lincoln Capital,IL,SPI,-0600,America/Chicago
+14955,SPN,Francisco C. Ada Saipan International,MP,PGSN,+1000,Pacific/Guam
+14960,SPS,Sheppard AFB/Wichita Falls Municipal,TX,SPS,-0600,America/Chicago
+14986,SRQ,Sarasota/Bradenton International,FL,SRQ,-0500,America/New_York
+15008,STC,St. Cloud Regional,MN,STC,-0600,America/Chicago
+15016,STL,St Louis Lambert International,MO,STL,-0600,America/Chicago
+15023,STS,Charles M. Schulz - Sonoma County,CA,STS,-0800,America/Los_Angeles
+15024,STT,Cyril E King,VI,TIST,-0400,America/St_Thomas
+15027,STX,Henry E. Rohlsen,VI,TISX,-0400,America/St_Thomas
+15041,SUN,Friedman Memorial,ID,SUN,-0700,America/Boise
+15048,SUX,Sioux Gateway Brig Gen Bud Day Field,IA,SUX,-0600,America/Chicago
+15070,SWF,New York Stewart International,NY,SWF,-0500,America/New_York
+15074,SWO,Stillwater Regional,OK,SWO,-0600,America/Chicago
+15096,SYR,Syracuse Hancock International,NY,SYR,-0500,America/New_York
+15249,TLH,Tallahassee International,FL,TLH,-0500,America/New_York
+15295,TOL,Eugene F Kranz Toledo Express,OH,TOL,-0500,America/New_York
+15304,TPA,Tampa International,FL,TPA,-0500,America/New_York
+15323,TRI,Tri Cities,TN,TRI,-0500,America/New_York
+15356,TTN,Trenton Mercer,NJ,TTN,-0500,America/New_York
+15370,TUL,Tulsa International,OK,TUL,-0600,America/Chicago
+15376,TUS,Tucson International,AZ,TUS,-0700,America/Phoenix
+15380,TVC,Cherry Capital,MI,TVC,-0500,America/Detroit
+15389,TWF,Joslin Field - Magic Valley Regional,ID,TWF,-0700,America/Boise
+15401,TXK,Texarkana Regional-Webb Field,AR,TXK,-0600,America/Chicago
+15411,TYR,Tyler Pounds Regional,TX,TYR,-0600,America/Chicago
+15412,TYS,McGhee Tyson,TN,TYS,-0500,America/New_York
+15569,VCT,Victoria Regional,TX,VCT,-0600,America/Chicago
+15624,VPS,Eglin AFB Destin Fort Walton Beach,FL,VPS,-0600,America/Chicago
+15628,VRB,Vero Beach Regional,FL,VRB,-0500,America/New_York
+15841,WRG,Wrangell Airport,AK,PAWG,-0900,America/Anchorage
+15897,WYS,Yellowstone,MT,WYS,-0700,America/Denver
+15919,XNA,Northwest Arkansas National,AR,XNA,-0600,America/Chicago
+15991,YAK,Yakutat Airport,AK,PAYA,-0900,America/Anchorage
+16218,YUM,Yuma MCAS/Yuma International,AZ,NYL,-0700,America/Phoenix
+16422,GUF,Gulf Shores International Jack Edwards Field,AL,JKA,-0600,America/Chicago
+16869,XWA,Williston Basin International,ND,XWA,-0600,America/Chicago

@@ -25,16 +25,17 @@ DEFAULT_RAW_ROOT = PROJECT_ROOT / "data" / "raw" / "bts"
 def parse_flight_date(value: str) -> datetime:
     """Parse the date formats observed in BTS monthly CSV files."""
     value = value.strip()
-    formats = (
-        "%m/%d/%Y %I:%M:%S %p",
-        "%Y-%m-%d",
-    )
-
-    for date_format in formats:
+    if "/" in value:
         try:
-            return datetime.strptime(value, date_format)
-        except ValueError:
-            continue
+            return datetime.strptime(value, "%m/%d/%Y %I:%M:%S %p")
+        except ValueError as exc:
+            raise ValueError(f"Unrecognized BTS FL_DATE value: {value!r}") from exc
+
+    elif "-" in value:
+        try:
+            return datetime.fromisoformat(value)
+        except ValueError as exc:
+            raise ValueError(f"Unrecognized BTS FL_DATE value: {value!r}") from exc
 
     raise ValueError(f"Unrecognized BTS FL_DATE value: {value!r}")
 

@@ -1,0 +1,1662 @@
+/* ==========================================================================
+   AeroPredict IO — Operations Console & Decision Diagnostics
+   Aviation Operations & ML Model Diagnostics
+   Compliant with WCAG 2.1 AA Contrast and Semantic Accessibility
+   ========================================================================== */
+
+:root {
+  /* Surface & Background Hierarchy */
+  --bg-app: #080d1a;
+  --bg-header: #0d1424;
+  --bg-surface: #111a2e;
+  --bg-surface-elevated: #16223b;
+  --bg-surface-hover: #1c2b4a;
+  --bg-card: #0f172a;
+  --bg-card-border: #1e293b;
+  --bg-input: #0a0f1d;
+  --bg-input-focus: #0f1629;
+
+  /* Border & Separator Hierarchy */
+  --border-subtle: #1e293b;
+  --border-muted: #29354d;
+  --border-highlight: #3b82f6;
+  --border-focus: #38bdf8;
+
+  /* Typography Colors (WCAG AA Compliant) */
+  --text-primary: #f8fafc;       /* 15.8:1 contrast on #080d1a */
+  --text-secondary: #cbd5e1;     /* 10.5:1 contrast */
+  --text-muted: #94a3b8;         /* 5.6:1 contrast (meets AA for body text) */
+  --text-dim: #64748b;           /* 3.2:1 contrast (auxiliary/disabled only) */
+  --text-link: #38bdf8;
+
+  /* Aviation Functional Status Colors */
+  --aviation-sky: #0284c7;
+  --aviation-sky-light: #38bdf8;
+  --aviation-sky-bg: rgba(2, 132, 199, 0.12);
+  --aviation-sky-border: rgba(56, 189, 248, 0.3);
+
+  --status-emerald: #10b981;
+  --status-emerald-light: #34d399;
+  --status-emerald-bg: rgba(16, 185, 129, 0.12);
+  --status-emerald-border: rgba(16, 185, 129, 0.35);
+
+  --status-amber: #f59e0b;
+  --status-amber-light: #fbbf24;
+  --status-amber-bg: rgba(245, 158, 11, 0.12);
+  --status-amber-border: rgba(245, 158, 11, 0.35);
+
+  --status-rose: #ef4444;
+  --status-rose-light: #f87171;
+  --status-rose-bg: rgba(239, 68, 68, 0.12);
+  --status-rose-border: rgba(239, 68, 68, 0.35);
+
+  /* Typography Tokens */
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
+
+  /* Spacing Scale */
+  --space-1: 0.25rem;  /* 4px */
+  --space-2: 0.5rem;   /* 8px */
+  --space-3: 0.75rem;  /* 12px */
+  --space-4: 1rem;     /* 16px */
+  --space-5: 1.25rem;  /* 20px */
+  --space-6: 1.5rem;   /* 24px */
+  --space-8: 2rem;     /* 32px */
+  --space-10: 2.5rem;  /* 40px */
+
+  /* Radius Scale */
+  --radius-xs: 3px;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.6);
+  --shadow-focus: 0 0 0 2px var(--bg-app), 0 0 0 4px var(--border-focus);
+}
+
+/* ==========================================================================
+   Base & Accessibility Resets
+   ========================================================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 14px;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-app);
+  color: var(--text-primary);
+  line-height: 1.55;
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+/* Accessible focus visible on all interactive elements */
+:focus-visible {
+  outline: 2px solid var(--border-focus) !important;
+  outline-offset: 2px !important;
+}
+
+/* Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ==========================================================================
+   Global Header & Navigation
+   ========================================================================== */
+header.corp-header {
+  height: 60px;
+  background-color: var(--bg-header);
+  border-bottom: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--space-6);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: var(--shadow-sm);
+}
+
+.brand-section {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  text-decoration: none;
+}
+
+.brand-symbol {
+  width: 34px;
+  height: 34px;
+  background: linear-gradient(135deg, var(--aviation-sky), #1d4ed8);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  flex-shrink: 0;
+}
+
+.brand-symbol svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.2;
+}
+
+.brand-titles {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-name {
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: #ffffff;
+  line-height: 1.2;
+}
+
+.brand-sub {
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* Navigation Tabs */
+nav.corp-nav {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  height: 100%;
+}
+
+.nav-link {
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: var(--text-muted);
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0 var(--space-4);
+  height: 100%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  transition: color 0.15s ease, border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.nav-link svg {
+  width: 16px;
+  height: 16px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+  flex-shrink: 0;
+}
+
+.nav-link:hover {
+  color: var(--text-primary);
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
+.nav-link.active {
+  color: var(--aviation-sky-light);
+  border-bottom-color: var(--aviation-sky);
+  background-color: rgba(2, 132, 199, 0.04);
+}
+
+/* System Status Pill */
+.header-status {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.telemetry-tag {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  background-color: var(--bg-input);
+  padding: 0.35rem 0.75rem;
+  border-radius: var(--radius-xs);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+.pulse-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--status-emerald);
+  box-shadow: 0 0 6px var(--status-emerald);
+}
+
+@media (max-width: 960px) {
+  header.corp-header {
+    height: auto;
+    flex-wrap: wrap;
+    padding: 0.5rem 1rem 0;
+    gap: 0.5rem;
+  }
+
+  .brand-section {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .header-status {
+    flex: 0 0 auto;
+  }
+
+  nav.corp-nav {
+    width: 100%;
+    order: 3;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    white-space: nowrap;
+    height: 42px;
+    padding-bottom: 2px;
+    scrollbar-width: none;
+  }
+
+  nav.corp-nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .nav-link {
+    flex-shrink: 0;
+    padding: 0 0.75rem;
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 540px) {
+  .brand-sub {
+    display: none;
+  }
+
+  .telemetry-tag {
+    font-size: 0.68rem;
+    padding: 0.25rem 0.5rem;
+  }
+}
+
+/* ==========================================================================
+   Page Layout & Subheader Strip
+   ========================================================================== */
+.view-wrapper {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: var(--space-6) var(--space-8) var(--space-10);
+  box-sizing: border-box;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .view-wrapper {
+    padding: 1rem 0.75rem 2rem;
+  }
+
+  .panel-header-strip {
+    margin-bottom: 1.25rem;
+    gap: 1rem;
+  }
+
+  .strip-title h2 {
+    font-size: 1.25rem;
+  }
+
+  .strip-kpis {
+    width: 100%;
+    gap: 0.5rem;
+  }
+
+  .kpi-unit {
+    flex: 1 1 calc(33.333% - 0.5rem);
+    min-width: 80px;
+    padding: 0.4rem 0.6rem;
+  }
+
+  .card-body {
+    padding: 1rem 0.75rem;
+  }
+
+  .map-frame {
+    height: 320px;
+  }
+}
+
+@media (max-width: 480px) {
+  .kpi-unit {
+    flex: 1 1 100%;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .form-row-duo {
+    grid-template-columns: 1fr;
+  }
+
+  .weather-selector-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+
+.tab-pane {
+  display: none;
+}
+
+.tab-pane.active {
+  display: block;
+}
+
+.panel-header-strip {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-bottom: var(--space-4);
+  margin-bottom: var(--space-6);
+  border-bottom: 1px solid var(--border-subtle);
+  gap: var(--space-6);
+  flex-wrap: wrap;
+}
+
+.strip-title h2 {
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.015em;
+  margin-bottom: var(--space-1);
+}
+
+.strip-title p {
+  color: var(--text-secondary);
+  font-size: 0.88rem;
+  max-width: 850px;
+  line-height: 1.5;
+}
+
+.strip-kpis {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.kpi-unit {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 0.5rem 0.9rem;
+  text-align: right;
+  min-width: 110px;
+}
+
+.kpi-unit .label {
+  display: block;
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+}
+
+.kpi-unit .value {
+  font-family: var(--font-mono);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--aviation-sky-light);
+}
+
+/* ==========================================================================
+   Operations Console Layout: Task-Focused Primary Hierarchy
+   ========================================================================== */
+.ops-workflow-grid {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: var(--space-6);
+  margin-bottom: var(--space-6);
+  align-items: start;
+}
+
+@media (max-width: 1200px) {
+  .ops-workflow-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Card Container */
+.card-container {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+.card-titlebar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.85rem 1.25rem;
+  background-color: var(--bg-header);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.titlebar-left {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.titlebar-left svg {
+  width: 17px;
+  height: 17px;
+  stroke: var(--aviation-sky-light);
+  fill: none;
+  stroke-width: 2;
+  flex-shrink: 0;
+}
+
+.titlebar-left h3 {
+  font-size: 0.92rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: var(--text-primary);
+}
+
+.card-badge {
+  font-size: 0.7rem;
+  font-family: var(--font-mono);
+  padding: 0.2rem 0.55rem;
+  background-color: var(--bg-input);
+  border: 1px solid var(--border-muted);
+  border-radius: var(--radius-xs);
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+.card-body {
+  padding: var(--space-5);
+}
+
+/* ==========================================================================
+   Flight Configuration Form
+   ========================================================================== */
+.form-grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+/* Preset Scenarios Strip */
+.scenario-bar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+  padding: var(--space-3);
+  background-color: var(--bg-input);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+}
+
+.scenario-label {
+  font-size: 0.7rem;
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.scenario-chips-group {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.btn-scenario {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  font-family: inherit;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.3rem 0.65rem;
+  border-radius: var(--radius-xs);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.btn-scenario:hover {
+  background-color: var(--bg-surface-elevated);
+  color: var(--text-primary);
+  border-color: var(--border-muted);
+}
+
+.btn-scenario.active {
+  background-color: var(--aviation-sky-bg);
+  border-color: var(--aviation-sky);
+  color: var(--aviation-sky-light);
+  box-shadow: 0 0 0 1px var(--aviation-sky);
+}
+
+/* Operational Fieldsets */
+.fieldset-group {
+  border: 1px solid var(--border-subtle);
+  background-color: rgba(13, 20, 36, 0.4);
+  border-radius: var(--radius-sm);
+  padding: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.fieldset-legend {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.fieldset-legend svg {
+  width: 14px;
+  height: 14px;
+  stroke: var(--aviation-sky-light);
+  fill: none;
+  stroke-width: 2;
+}
+
+.form-row-duo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3);
+}
+
+@media (max-width: 640px) {
+  .form-row-duo {
+    grid-template-columns: 1fr;
+  }
+}
+
+.field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  min-width: 0; /* Prevents flex children from clipping */
+}
+
+.field-label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.field-group label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.field-helper {
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+}
+
+.corp-input {
+  background-color: var(--bg-input);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xs);
+  padding: 0.6rem 0.8rem;
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: 0.85rem;
+  outline: none;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+  width: 100%;
+}
+
+.corp-input:hover {
+  border-color: var(--border-muted);
+}
+
+.corp-input:focus {
+  border-color: var(--border-focus);
+  background-color: var(--bg-input-focus);
+}
+
+select.corp-input {
+  cursor: pointer;
+  appearance: auto;
+}
+
+/* METAR Weather Condition Selector */
+.weather-selector-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.35rem;
+}
+
+@media (max-width: 600px) {
+  .weather-selector-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.btn-metar {
+  background-color: var(--bg-input);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xs);
+  padding: 0.55rem 0.3rem;
+  text-align: center;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+  transition: all 0.15s ease;
+  min-height: 48px;
+}
+
+.btn-metar .code {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+
+.btn-metar .desc {
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.btn-metar:hover {
+  background-color: var(--bg-surface-elevated);
+  border-color: var(--border-muted);
+}
+
+.btn-metar.active {
+  background-color: var(--aviation-sky-bg);
+  border-color: var(--aviation-sky);
+  box-shadow: 0 0 0 1px var(--aviation-sky);
+}
+
+.btn-metar.active .code {
+  color: var(--aviation-sky-light);
+}
+
+.btn-metar.active .desc {
+  color: #ffffff;
+}
+
+/* Sliders */
+.slider-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.slider-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+.slider-val-readout {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: var(--aviation-sky-light);
+  font-weight: 700;
+}
+
+.slider-range-limits {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  margin-top: -2px;
+}
+
+input[type="range"].corp-range {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 6px;
+  background: #1a2438;
+  border-radius: 3px;
+  outline: none;
+  cursor: pointer;
+  margin: 0.35rem 0;
+}
+
+input[type="range"].corp-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: var(--radius-xs);
+  background: var(--aviation-sky);
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+input[type="range"].corp-range::-webkit-slider-thumb:hover {
+  background: var(--aviation-sky-light);
+  transform: scale(1.15);
+}
+
+/* Submit Action Button */
+.btn-dispatch-eval {
+  background: linear-gradient(135deg, var(--aviation-sky), #1d4ed8);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-xs);
+  padding: 0.85rem 1.5rem;
+  font-family: inherit;
+  font-size: 0.92rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  transition: all 0.15s ease;
+  box-shadow: var(--shadow-sm);
+  margin-top: var(--space-2);
+  min-height: 44px; /* Accessible touch target */
+}
+
+.btn-dispatch-eval svg {
+  width: 17px;
+  height: 17px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2.2;
+}
+
+.btn-dispatch-eval:hover:not(:disabled) {
+  background: linear-gradient(135deg, #0284c7, #2563eb);
+  box-shadow: 0 2px 8px rgba(2, 132, 199, 0.4);
+}
+
+.btn-dispatch-eval:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+
+/* Form Action Error Alert */
+.form-error-banner {
+  background-color: var(--status-rose-bg);
+  border: 1px solid var(--status-rose-border);
+  border-radius: var(--radius-xs);
+  padding: 0.75rem 1rem;
+  color: var(--status-rose-light);
+  font-size: 0.82rem;
+  display: none;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+/* ==========================================================================
+   Right Column: Live Assessment Output & Tactical Airspace Map
+   ========================================================================== */
+.results-and-map-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+/* Operational Assessment Output Card */
+.eval-result-card {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  scroll-margin-top: 85px;
+}
+
+
+/* Pre-evaluation placeholder state */
+.eval-placeholder {
+  padding: var(--space-6);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  color: var(--text-muted);
+  min-height: 200px;
+}
+
+.eval-placeholder svg {
+  width: 36px;
+  height: 36px;
+  stroke: var(--text-dim);
+  stroke-width: 1.5;
+}
+
+.eval-placeholder h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.eval-placeholder p {
+  font-size: 0.82rem;
+  max-width: 440px;
+  line-height: 1.5;
+}
+
+/* Evaluated Result Active State */
+.eval-active-container {
+  display: none;
+}
+
+.result-status-header {
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border-subtle);
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.status-alert {
+  background: linear-gradient(90deg, rgba(239, 68, 68, 0.15) 0%, rgba(18, 25, 41, 0.6) 100%);
+  border-left: 4px solid var(--status-rose);
+}
+
+.status-cleared {
+  background: linear-gradient(90deg, rgba(16, 185, 129, 0.15) 0%, rgba(18, 25, 41, 0.6) 100%);
+  border-left: 4px solid var(--status-emerald);
+}
+
+.status-left {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-width: 0;
+}
+
+.status-icon-box {
+  width: 42px;
+  height: 42px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.status-icon-box.icon-alert {
+  background-color: var(--status-rose-bg);
+  color: var(--status-rose);
+  border: 1px solid var(--status-rose-border);
+}
+
+.status-icon-box.icon-cleared {
+  background-color: var(--status-emerald-bg);
+  color: var(--status-emerald);
+  border: 1px solid var(--status-emerald-border);
+}
+
+.status-icon-box svg {
+  width: 22px;
+  height: 22px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2.2;
+}
+
+.status-headline h4 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: #ffffff;
+}
+
+.status-headline p {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  margin-top: 0.15rem;
+}
+
+.status-metrics {
+  display: flex;
+  align-items: center;
+  gap: var(--space-5);
+  flex-shrink: 0;
+}
+
+.metric-column {
+  text-align: right;
+}
+
+.metric-column .val {
+  font-family: var(--font-mono);
+  font-size: 2.1rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.metric-column .ref {
+  font-size: 0.68rem;
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+  text-transform: uppercase;
+  margin-top: 0.35rem;
+}
+
+/* TreeSHAP Diagnostics Section */
+.shap-audit-section {
+  padding: 1.25rem 1.5rem;
+}
+
+.section-caption {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-3);
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.section-caption h5 {
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-primary);
+}
+
+.section-caption span {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+.table-responsive-wrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.attribution-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+}
+
+.attribution-table th {
+  background-color: var(--bg-header);
+  padding: 0.65rem 0.85rem;
+  text-align: left;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.attribution-table td {
+  padding: 0.75rem 0.85rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  color: var(--text-secondary);
+  vertical-align: middle;
+}
+
+.attribution-table tr:hover td {
+  background-color: var(--bg-surface-elevated);
+}
+
+.attribution-table .feature-name {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.attribution-table .observed-val {
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+}
+
+.attribution-table .impact-val {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.impact-pos { color: var(--status-rose); }
+.impact-neg { color: var(--status-emerald); }
+
+.audit-footer-strip {
+  padding: 0.75rem 1.5rem;
+  background-color: var(--bg-header);
+  border-top: 1px solid var(--border-subtle);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.72rem;
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+/* Tactical Airspace Map Container */
+.map-frame {
+  height: 420px;
+  width: 100%;
+  position: relative;
+  background: #060911;
+  border-radius: var(--radius-xs);
+  overflow: hidden;
+  border: 1px solid var(--border-subtle);
+}
+
+#flight-map {
+  width: 100%;
+  height: 100%;
+  background: #060911;
+}
+
+.leaflet-tile-pane {
+  filter: brightness(0.6) invert(1) contrast(3) hue-rotate(200deg) saturate(0.2) brightness(0.7);
+}
+
+.map-control-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: var(--space-3);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.map-legend-pills {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.legend-chip {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.legend-sq {
+  width: 9px;
+  height: 9px;
+  border-radius: 2px;
+}
+
+.sq-green { background-color: var(--status-emerald); }
+.sq-amber { background-color: var(--status-amber); }
+.sq-rose  { background-color: var(--status-rose); }
+
+.map-disclaimer {
+  font-size: 0.7rem;
+  color: var(--text-dim);
+  font-style: italic;
+}
+
+/* ==========================================================================
+   Tab 4: Model Architecture & Governance Refinements
+   ========================================================================== */
+.governance-section-title {
+  margin-bottom: var(--space-3);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.governance-section-title h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.metric-opt-pill {
+  font-size: 0.68rem;
+  font-family: var(--font-mono);
+  padding: 0.15rem 0.4rem;
+  border-radius: 2px;
+  margin-left: 0.25rem;
+  font-weight: 600;
+}
+
+.opt-max {
+  background-color: rgba(16, 185, 129, 0.15);
+  color: var(--status-emerald-light);
+  border: 1px solid var(--status-emerald-border);
+}
+
+.opt-min {
+  background-color: rgba(56, 189, 248, 0.15);
+  color: var(--aviation-sky-light);
+  border: 1px solid var(--aviation-sky-border);
+}
+
+table.corp-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+  text-align: left;
+}
+
+table.corp-table th {
+  background-color: var(--bg-header);
+  padding: 0.85rem 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border-bottom: 1px solid var(--border-subtle);
+  white-space: nowrap;
+}
+
+table.corp-table td {
+  padding: 0.9rem 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  color: var(--text-secondary);
+  vertical-align: middle;
+}
+
+table.corp-table tr:hover td {
+  background-color: var(--bg-surface-elevated);
+}
+
+table.corp-table tr.champion-row td {
+  background-color: rgba(2, 132, 199, 0.08);
+  color: #ffffff;
+  font-weight: 600;
+  border-left: 3px solid var(--aviation-sky);
+}
+
+.tag-champion {
+  background-color: var(--aviation-sky);
+  color: #ffffff;
+  font-size: 0.65rem;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--radius-xs);
+  margin-left: var(--space-2);
+  display: inline-block;
+}
+
+/* Structured Rationale Grid */
+.rationale-comparison-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+}
+
+@media (max-width: 1024px) {
+  .rationale-comparison-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.comparison-box {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: var(--space-4);
+  display: flex;
+  flex-direction: column;
+}
+
+.comparison-box h4 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: var(--space-2);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.comparison-box p {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+  margin-bottom: var(--space-3);
+}
+
+.comparison-metrics-list {
+  margin-top: auto;
+  border-top: 1px solid var(--border-subtle);
+  padding-top: var(--space-2);
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-size: 0.75rem;
+  font-family: var(--font-mono);
+}
+
+.comp-metric-row {
+  display: flex;
+  justify-content: space-between;
+  color: var(--text-muted);
+}
+
+.comp-metric-row strong {
+  color: var(--text-primary);
+}
+
+/* Asymmetric Cost Matrix Table */
+.cost-matrix-card {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: var(--space-5);
+  margin-bottom: var(--space-6);
+}
+
+.cost-matrix-card h4 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: var(--space-2);
+}
+
+.cost-matrix-card p {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: var(--space-4);
+  max-width: 900px;
+}
+
+.matrix-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+}
+
+@media (max-width: 768px) {
+  .matrix-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.matrix-quadrant {
+  background-color: var(--bg-input);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xs);
+  padding: var(--space-4);
+}
+
+.matrix-quadrant.cost-severe {
+  border-color: var(--status-rose-border);
+  background-color: rgba(239, 68, 68, 0.05);
+}
+
+.matrix-quadrant.cost-manageable {
+  border-color: var(--aviation-sky-border);
+  background-color: rgba(2, 132, 199, 0.05);
+}
+
+.matrix-quadrant h5 {
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+  margin-bottom: 0.35rem;
+}
+
+.matrix-quadrant .cost-val {
+  font-family: var(--font-mono);
+  font-size: 1.4rem;
+  font-weight: 800;
+  margin-bottom: 0.25rem;
+}
+
+.matrix-quadrant .cost-desc {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+/* ==========================================================================
+   Tabs 2 & 3: Dossiers and Gallery Layout
+   ========================================================================== */
+.dossier-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-5);
+  margin-bottom: var(--space-6);
+}
+
+@media (max-width: 1024px) {
+  .dossier-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.dossier-card {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: var(--space-5);
+  display: flex;
+  flex-direction: column;
+}
+
+.dossier-tag {
+  align-self: flex-start;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--radius-xs);
+  margin-bottom: var(--space-3);
+  letter-spacing: 0.05em;
+  font-weight: 700;
+}
+
+.tag-blue   { background-color: var(--aviation-sky-bg); color: var(--aviation-sky-light); border: 1px solid var(--aviation-sky-border); }
+.tag-amber  { background-color: var(--status-amber-bg); color: var(--status-amber-light); border: 1px solid var(--status-amber-border); }
+.tag-slate  { background-color: rgba(148, 163, 184, 0.1); color: var(--text-secondary); border: 1px solid var(--border-muted); }
+
+.dossier-card h4 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: var(--space-2);
+  letter-spacing: -0.01em;
+}
+
+.dossier-card p {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: var(--space-4);
+}
+
+.dossier-metric-box {
+  margin-top: auto;
+  background-color: var(--bg-input);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xs);
+  padding: var(--space-3) var(--space-4);
+}
+
+.dossier-metric-box .metric-label {
+  font-size: 0.68rem;
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+.dossier-metric-box .metric-data {
+  font-family: var(--font-mono);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0.15rem 0;
+}
+
+.dossier-metric-box .metric-note {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+/* Charts Gallery Grid */
+.charts-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-5);
+  margin-bottom: var(--space-6);
+}
+
+@media (max-width: 960px) {
+  .charts-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.chart-card {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.chart-preview-frame {
+  height: 290px;
+  background-color: #060911;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+  cursor: zoom-in;
+}
+
+.chart-preview-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.2s ease;
+}
+
+.chart-preview-frame:hover img {
+  opacity: 0.9;
+}
+
+.zoom-indicator {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background-color: rgba(15, 23, 42, 0.9);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--radius-xs);
+  pointer-events: none;
+}
+
+.chart-desc-body {
+  padding: var(--space-4);
+}
+
+.chart-desc-body h4 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: var(--space-1);
+}
+
+.chart-desc-body p {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+}
+
+/* ==========================================================================
+   Modals, Popups & Footers
+   ========================================================================== */
+.corp-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(4, 7, 13, 0.92);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-6);
+}
+
+.corp-modal.active {
+  display: flex;
+}
+
+.modal-viewport {
+  position: relative;
+  max-width: 92vw;
+  max-height: 92vh;
+}
+
+.modal-viewport img {
+  max-width: 100%;
+  max-height: 85vh;
+  object-fit: contain;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-muted);
+}
+
+.btn-close-modal {
+  position: absolute;
+  top: -14px;
+  right: -14px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: var(--bg-surface-elevated);
+  border: 1px solid var(--border-muted);
+  color: #ffffff;
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Map Popups */
+.hub-popup-corp {
+  padding: 0.25rem;
+}
+
+.hub-popup-corp .iata-code {
+  font-family: var(--font-mono);
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--aviation-sky-light);
+}
+
+.hub-popup-corp .name {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.65rem;
+}
+
+.hub-popup-corp .stat-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.72rem;
+  margin-bottom: 0.35rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  padding-bottom: 0.2rem;
+}
+
+.hub-popup-corp .action-buttons {
+  display: flex;
+  gap: 0.4rem;
+  margin-top: 0.75rem;
+}
+
+.hub-popup-corp button {
+  flex: 1;
+  background-color: var(--bg-input);
+  border: 1px solid var(--border-muted);
+  color: var(--text-primary);
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.4rem 0.5rem;
+  border-radius: var(--radius-xs);
+  cursor: pointer;
+}
+
+.hub-popup-corp button:hover {
+  background-color: var(--aviation-sky);
+  border-color: var(--aviation-sky);
+  color: #ffffff;
+}
+
+/* Corporate Footer */
+footer.corp-footer {
+  border-top: 1px solid var(--border-subtle);
+  background-color: var(--bg-header);
+  padding: var(--space-4) var(--space-8);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+footer.corp-footer .spec-info {
+  font-family: var(--font-mono);
+}

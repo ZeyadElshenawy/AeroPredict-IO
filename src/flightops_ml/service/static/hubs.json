@@ -1,0 +1,402 @@
+[
+  {
+    "iata": "ORD",
+    "name": "Chicago O'Hare International",
+    "lat": 41.9769,
+    "lon": -87.9081,
+    "flight_count": 320418,
+    "delay_rate_pct": 25.01
+  },
+  {
+    "iata": "DEN",
+    "name": "Denver International",
+    "lat": 39.8614,
+    "lon": -104.6725,
+    "flight_count": 314281,
+    "delay_rate_pct": 25.54
+  },
+  {
+    "iata": "ATL",
+    "name": "Hartsfield-Jackson Atlanta International",
+    "lat": 33.6367,
+    "lon": -84.4279,
+    "flight_count": 309064,
+    "delay_rate_pct": 23.49
+  },
+  {
+    "iata": "DFW",
+    "name": "Dallas/Fort Worth International",
+    "lat": 32.8972,
+    "lon": -97.0378,
+    "flight_count": 306185,
+    "delay_rate_pct": 28.56
+  },
+  {
+    "iata": "PHX",
+    "name": "Phoenix Sky Harbor International",
+    "lat": 33.4339,
+    "lon": -112.0118,
+    "flight_count": 194840,
+    "delay_rate_pct": 21.04
+  },
+  {
+    "iata": "CLT",
+    "name": "Charlotte Douglas International",
+    "lat": 35.2133,
+    "lon": -80.9501,
+    "flight_count": 191629,
+    "delay_rate_pct": 23.94
+  },
+  {
+    "iata": "LAX",
+    "name": "Los Angeles International",
+    "lat": 33.9428,
+    "lon": -118.4085,
+    "flight_count": 188578,
+    "delay_rate_pct": 18.1
+  },
+  {
+    "iata": "LAS",
+    "name": "Harry Reid International",
+    "lat": 36.08,
+    "lon": -115.1522,
+    "flight_count": 181901,
+    "delay_rate_pct": 23.18
+  },
+  {
+    "iata": "AUS",
+    "name": "Robert Mueller Municipal",
+    "lat": 30.1944,
+    "lon": -97.67,
+    "flight_count": 171412,
+    "delay_rate_pct": 23.43
+  },
+  {
+    "iata": "SEA",
+    "name": "Seattle/Tacoma International",
+    "lat": 47.45,
+    "lon": -122.3117,
+    "flight_count": 162971,
+    "delay_rate_pct": 21.15
+  },
+  {
+    "iata": "MCO",
+    "name": "Orlando International",
+    "lat": 28.4293,
+    "lon": -81.3078,
+    "flight_count": 157950,
+    "delay_rate_pct": 24.43
+  },
+  {
+    "iata": "SFO",
+    "name": "San Francisco International",
+    "lat": 37.6189,
+    "lon": -122.3756,
+    "flight_count": 142973,
+    "delay_rate_pct": 18.9
+  },
+  {
+    "iata": "BOS",
+    "name": "Logan International",
+    "lat": 42.3631,
+    "lon": -71.0067,
+    "flight_count": 140092,
+    "delay_rate_pct": 22.69
+  },
+  {
+    "iata": "DCA",
+    "name": "Ronald Reagan Washington National",
+    "lat": 38.8514,
+    "lon": -77.0378,
+    "flight_count": 136684,
+    "delay_rate_pct": 25.5
+  },
+  {
+    "iata": "LGA",
+    "name": "LaGuardia",
+    "lat": 40.7772,
+    "lon": -73.8725,
+    "flight_count": 131177,
+    "delay_rate_pct": 22.2
+  },
+  {
+    "iata": "DTW",
+    "name": "Detroit Metro Wayne County",
+    "lat": 42.2125,
+    "lon": -83.3533,
+    "flight_count": 120880,
+    "delay_rate_pct": 19.75
+  },
+  {
+    "iata": "EWR",
+    "name": "Newark Liberty International",
+    "lat": 40.6931,
+    "lon": -74.1686,
+    "flight_count": 116940,
+    "delay_rate_pct": 22.27
+  },
+  {
+    "iata": "IAH",
+    "name": "George Bush Intercontinental/Houston",
+    "lat": 29.985,
+    "lon": -95.3412,
+    "flight_count": 115404,
+    "delay_rate_pct": 22.87
+  },
+  {
+    "iata": "SLC",
+    "name": "Salt Lake City International",
+    "lat": 40.7883,
+    "lon": -111.9778,
+    "flight_count": 115369,
+    "delay_rate_pct": 15.4
+  },
+  {
+    "iata": "MSP",
+    "name": "Minneapolis-St Paul International",
+    "lat": 44.8819,
+    "lon": -93.2217,
+    "flight_count": 111700,
+    "delay_rate_pct": 18.81
+  },
+  {
+    "iata": "MIA",
+    "name": "Miami International",
+    "lat": 25.7957,
+    "lon": -80.2899,
+    "flight_count": 110113,
+    "delay_rate_pct": 25.21
+  },
+  {
+    "iata": "BNA",
+    "name": "Nashville International",
+    "lat": 36.1242,
+    "lon": -86.6779,
+    "flight_count": 103635,
+    "delay_rate_pct": 24.36
+  },
+  {
+    "iata": "JFK",
+    "name": "John F. Kennedy International",
+    "lat": 40.64,
+    "lon": -73.7786,
+    "flight_count": 102371,
+    "delay_rate_pct": 21.05
+  },
+  {
+    "iata": "SAN",
+    "name": "San Diego International",
+    "lat": 32.7336,
+    "lon": -117.1897,
+    "flight_count": 95509,
+    "delay_rate_pct": 22.75
+  },
+  {
+    "iata": "PHL",
+    "name": "Philadelphia International",
+    "lat": 39.8731,
+    "lon": -75.2385,
+    "flight_count": 95211,
+    "delay_rate_pct": 23.73
+  },
+  {
+    "iata": "BWI",
+    "name": "Baltimore/Washington International Thurgood Marshall",
+    "lat": 39.1758,
+    "lon": -76.6689,
+    "flight_count": 94610,
+    "delay_rate_pct": 25.67
+  },
+  {
+    "iata": "FLL",
+    "name": "Fort Lauderdale-Hollywood International",
+    "lat": 26.0715,
+    "lon": -80.1496,
+    "flight_count": 86218,
+    "delay_rate_pct": 24.88
+  },
+  {
+    "iata": "TPA",
+    "name": "Tampa International",
+    "lat": 27.9756,
+    "lon": -82.5333,
+    "flight_count": 78251,
+    "delay_rate_pct": 21.84
+  },
+  {
+    "iata": "MDW",
+    "name": "Chicago Midway International",
+    "lat": 41.7858,
+    "lon": -87.7525,
+    "flight_count": 73026,
+    "delay_rate_pct": 24.39
+  },
+  {
+    "iata": "DAL",
+    "name": "Dallas Love Field",
+    "lat": 32.846,
+    "lon": -96.8508,
+    "flight_count": 70145,
+    "delay_rate_pct": 27.13
+  },
+  {
+    "iata": "STL",
+    "name": "St Louis Lambert International",
+    "lat": 38.7486,
+    "lon": -90.37,
+    "flight_count": 63152,
+    "delay_rate_pct": 22.73
+  },
+  {
+    "iata": "PDX",
+    "name": "Portland International",
+    "lat": 45.5886,
+    "lon": -122.5975,
+    "flight_count": 60559,
+    "delay_rate_pct": 15.87
+  },
+  {
+    "iata": "HNL",
+    "name": "Daniel K Inouye International",
+    "lat": 21.3178,
+    "lon": -157.9203,
+    "flight_count": 58346,
+    "delay_rate_pct": 12.75
+  },
+  {
+    "iata": "SMF",
+    "name": "Sacramento International",
+    "lat": 38.6956,
+    "lon": -121.5908,
+    "flight_count": 57424,
+    "delay_rate_pct": 18.1
+  },
+  {
+    "iata": "IAD",
+    "name": "Washington Dulles International",
+    "lat": 38.9519,
+    "lon": -77.4609,
+    "flight_count": 56790,
+    "delay_rate_pct": 17.78
+  },
+  {
+    "iata": "HOU",
+    "name": "William P Hobby",
+    "lat": 29.646,
+    "lon": -95.2772,
+    "flight_count": 54501,
+    "delay_rate_pct": 23.6
+  },
+  {
+    "iata": "RDU",
+    "name": "Raleigh-Durham International",
+    "lat": 35.8768,
+    "lon": -78.7865,
+    "flight_count": 54330,
+    "delay_rate_pct": 19.89
+  },
+  {
+    "iata": "MSY",
+    "name": "Louis Armstrong New Orleans International",
+    "lat": 29.9912,
+    "lon": -90.2547,
+    "flight_count": 50063,
+    "delay_rate_pct": 22.23
+  },
+  {
+    "iata": "MCI",
+    "name": "Kansas City International",
+    "lat": 39.2974,
+    "lon": -94.7136,
+    "flight_count": 47324,
+    "delay_rate_pct": 19.77
+  },
+  {
+    "iata": "IND",
+    "name": "Indianapolis International",
+    "lat": 39.7172,
+    "lon": -86.2947,
+    "flight_count": 46473,
+    "delay_rate_pct": 17.88
+  },
+  {
+    "iata": "SJC",
+    "name": "Norman Y. Mineta San Jose International",
+    "lat": 37.3631,
+    "lon": -121.9286,
+    "flight_count": 45520,
+    "delay_rate_pct": 16.72
+  },
+  {
+    "iata": "SNA",
+    "name": "John Wayne Airport-Orange County",
+    "lat": 33.6758,
+    "lon": -117.868,
+    "flight_count": 44395,
+    "delay_rate_pct": 19.21
+  },
+  {
+    "iata": "CMH",
+    "name": "John Glenn Columbus International",
+    "lat": 39.9969,
+    "lon": -82.8922,
+    "flight_count": 43630,
+    "delay_rate_pct": 18.86
+  },
+  {
+    "iata": "PIT",
+    "name": "Pittsburgh International",
+    "lat": 40.4914,
+    "lon": -80.2328,
+    "flight_count": 42466,
+    "delay_rate_pct": 17.06
+  },
+  {
+    "iata": "SAT",
+    "name": "San Antonio International",
+    "lat": 29.534,
+    "lon": -98.4693,
+    "flight_count": 41200,
+    "delay_rate_pct": 17.79
+  },
+  {
+    "iata": "CLE",
+    "name": "Cleveland-Hopkins International",
+    "lat": 41.4099,
+    "lon": -81.854,
+    "flight_count": 39139,
+    "delay_rate_pct": 18.16
+  },
+  {
+    "iata": "SJU",
+    "name": "Luis Munoz Marin International",
+    "lat": 18.4394,
+    "lon": -66.0022,
+    "flight_count": 35232,
+    "delay_rate_pct": 21.85
+  },
+  {
+    "iata": "RSW",
+    "name": "Southwest Florida International",
+    "lat": 26.5361,
+    "lon": -81.7553,
+    "flight_count": 34660,
+    "delay_rate_pct": 19.97
+  },
+  {
+    "iata": "OAK",
+    "name": "Oakland International",
+    "lat": 37.7214,
+    "lon": -122.2211,
+    "flight_count": 34305,
+    "delay_rate_pct": 19.94
+  },
+  {
+    "iata": "CVG",
+    "name": "Cincinnati/Northern Kentucky International",
+    "lat": 39.0489,
+    "lon": -84.6678,
+    "flight_count": 32844,
+    "delay_rate_pct": 19.55
+  }
+]

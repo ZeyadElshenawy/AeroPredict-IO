@@ -1,0 +1,152 @@
+{
+  "timestamp": "2026-10-26 10:39:31 UTC",
+  "test_holdout_flights": 885822,
+  "test_delayed_flights": 214095,
+  "test_base_delay_rate": 24.17,
+  "models": [
+    {
+      "model_name": "Baseline Heuristic 2 (Carrier x Origin x Hour)",
+      "roc_auc": 0.6564,
+      "pr_auc": 0.358,
+      "brier_score": 0.1738,
+      "default_threshold_0_5": {
+        "accuracy_pct": 75.77,
+        "precision": 0.4795,
+        "recall": 0.0303,
+        "f1_score": 0.0569
+      },
+      "operational_threshold": {
+        "threshold_tau": 0.21,
+        "accuracy_pct": 57.93,
+        "precision": 0.3234,
+        "recall": 0.6781,
+        "f1_score": 0.4379
+      },
+      "test_optimal_f1": {
+        "threshold_tau": 0.19,
+        "f1_score": 0.4393
+      }
+    },
+    {
+      "model_name": "Model 3: Logistic Regression (Engineered)",
+      "roc_auc": 0.6755,
+      "pr_auc": 0.3921,
+      "brier_score": 0.1713,
+      "default_threshold_0_5": {
+        "accuracy_pct": 76.14,
+        "precision": 0.557,
+        "recall": 0.0625,
+        "f1_score": 0.1125
+      },
+      "operational_threshold": {
+        "threshold_tau": 0.21,
+        "accuracy_pct": 62.59,
+        "precision": 0.3479,
+        "recall": 0.6265,
+        "f1_score": 0.4473
+      },
+      "test_optimal_f1": {
+        "threshold_tau": 0.18,
+        "f1_score": 0.4507
+      }
+    },
+    {
+      "model_name": "Model 2: CatBoost (Engineered + Weather)",
+      "roc_auc": 0.6882,
+      "pr_auc": 0.4081,
+      "brier_score": 0.1681,
+      "default_threshold_0_5": {
+        "accuracy_pct": 76.25,
+        "precision": 0.588,
+        "recall": 0.0583,
+        "f1_score": 0.1061
+      },
+      "operational_threshold": {
+        "threshold_tau": 0.21,
+        "accuracy_pct": 58.13,
+        "precision": 0.3332,
+        "recall": 0.731,
+        "f1_score": 0.4577
+      },
+      "test_optimal_f1": {
+        "threshold_tau": 0.22,
+        "f1_score": 0.4584
+      }
+    },
+    {
+      "model_name": "Model 1: LightGBM (Engineered + Weather)",
+      "roc_auc": 0.6918,
+      "pr_auc": 0.4137,
+      "brier_score": 0.169,
+      "default_threshold_0_5": {
+        "accuracy_pct": 76.32,
+        "precision": 0.6386,
+        "recall": 0.0468,
+        "f1_score": 0.0872
+      },
+      "operational_threshold": {
+        "threshold_tau": 0.21,
+        "accuracy_pct": 64.92,
+        "precision": 0.3663,
+        "recall": 0.6182,
+        "f1_score": 0.46
+      },
+      "test_optimal_f1": {
+        "threshold_tau": 0.19,
+        "f1_score": 0.4621
+      }
+    },
+    {
+      "model_name": "Model 4: Blended Meta-Ensemble (Champion Platform)",
+      "roc_auc": 0.6917,
+      "pr_auc": 0.4136,
+      "brier_score": 0.169,
+      "default_threshold_0_5": {
+        "accuracy_pct": 76.32,
+        "precision": 0.6388,
+        "recall": 0.0462,
+        "f1_score": 0.0861
+      },
+      "operational_threshold": {
+        "threshold_tau": 0.21,
+        "accuracy_pct": 64.69,
+        "precision": 0.365,
+        "recall": 0.6233,
+        "f1_score": 0.4604
+      },
+      "test_optimal_f1": {
+        "threshold_tau": 0.19,
+        "f1_score": 0.4619
+      }
+    }
+  ],
+  "holiday_stress_tests": [
+    {
+      "period": "Standard Winter Traffic",
+      "flight_count": 729923,
+      "delay_base_rate": 24.16,
+      "pr_auc": 0.4117,
+      "roc_auc": 0.6908,
+      "delays_caught_recall_pct": 62.56,
+      "alert_precision_pct": 36.41
+    },
+    {
+      "period": "Thanksgiving Peak (Nov 25-30)",
+      "flight_count": 86123,
+      "delay_base_rate": 24.65,
+      "pr_auc": 0.4683,
+      "roc_auc": 0.7216,
+      "delays_caught_recall_pct": 65.93,
+      "alert_precision_pct": 38.84
+    },
+    {
+      "period": "Christmas Blizzard Peak (Dec 22-26)",
+      "flight_count": 69776,
+      "delay_base_rate": 23.65,
+      "pr_auc": 0.3592,
+      "roc_auc": 0.6633,
+      "delays_caught_recall_pct": 55.22,
+      "alert_precision_pct": 34.41
+    }
+  ]
+}

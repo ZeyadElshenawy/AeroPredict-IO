@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="AeroPredict IO — Pre-Departure Flight Delay Risk Assessment &amp; Diagnostics Platform">
+  <title>FlightOps — AeroPredict IO Pre-Departure Flight Delay Risk Assessment</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+  <!-- Application Header -->
+  <header class="corp-header" role="banner">
+    <div class="brand-section">
+      <div class="brand-symbol" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"></path></svg>
+      </div>
+      <div class="brand-titles">
+        <span class="brand-name">AeroPredict IO</span>
+        <span class="brand-sub">Flight Operations &amp; Delay Risk Assessment</span>
+      </div>
+    </div>
+
+    <nav class="corp-nav" role="navigation" aria-label="Main Navigation">
+      <button class="nav-link active" data-tab="tab-operations" role="tab" aria-selected="true" aria-controls="tab-operations">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+        <span>Operations Console</span>
+      </button>
+      <button class="nav-link" data-tab="tab-business-case" role="tab" aria-selected="false" aria-controls="tab-business-case">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+        <span>Business Case &amp; Formulation</span>
+      </button>
+      <button class="nav-link" data-tab="tab-network-eda" role="tab" aria-selected="false" aria-controls="tab-network-eda">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+        <span>Network Analytics (EDA)</span>
+      </button>
+      <button class="nav-link" data-tab="tab-model-governance" role="tab" aria-selected="false" aria-controls="tab-model-governance">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+        <span>Model Architecture &amp; Governance</span>
+      </button>
+    </nav>
+
+    <div class="header-status">
+      <div class="telemetry-tag" title="Inference service status and deployed model version">
+        <span class="pulse-indicator" aria-hidden="true"></span>
+        <span>IOC ACTIVE &bull; LIGHTGBM v1.0.0</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main View Container -->
+  <main class="view-wrapper" role="main">
+
+    <!-- =====================================================================
+         TAB 1: OPERATIONS CONSOLE
+         ===================================================================== -->
+    <section id="tab-operations" class="tab-pane active" role="tabpanel" aria-labelledby="tab-operations">
+
+      <div class="panel-header-strip">
+        <div class="strip-title">
+          <h2>Pre-Departure Disruption Assessment (T-120 Min Cutoff)</h2>
+          <p>Real-time probabilistic inference scoring departure delay risk (&ge; 15 min) against the calibrated &tau;* = 0.21 threshold using terminal weather scenario inputs (METAR T-120m horizon), runway demand, and historical route priors.</p>
+        </div>
+        <div class="strip-kpis" role="region" aria-label="Operational Key Metrics">
+          <div class="kpi-unit">
+            <span class="label">Target Definition</span>
+            <span class="value">DEP_DEL15</span>
+          </div>
+          <div class="kpi-unit">
+            <span class="label">Decision Cutoff</span>
+            <span class="value">&tau;* = 0.21</span>
+          </div>
+          <div class="kpi-unit">
+            <span class="label">Inference Horizon</span>
+            <span class="value">T - 120m</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Task-Centered Primary Grid: Form on Left, Output & Map on Right -->
+      <div class="ops-workflow-grid">
+
+        <!-- Left Column: Flight Configuration Form -->
+        <div class="card-container">
+          <div class="card-titlebar">
+            <div class="titlebar-left">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="4" y1="21" x2="4" y2="14"></line><line x1="4" y1="10" x2="4" y2="3"></line><line x1="12" y1="21" x2="12" y2="12"></line><line x1="12" y1="8" x2="12" y2="3"></line><line x1="20" y1="21" x2="20" y2="16"></line><line x1="20" y1="12" x2="20" y2="3"></line><line x1="1" y1="14" x2="7" y2="14"></line><line x1="9" y1="8" x2="15" y2="8"></line><line x1="17" y1="16" x2="23" y2="16"></line></svg>
+              <h3>Flight Dispatch &amp; Scenario Configuration</h3>
+            </div>
+            <span id="active-scenario-badge" class="card-badge">Custom Configuration</span>
+          </div>
+
+          <div class="card-body">
+            <form id="flight-simulator-form" class="form-grid" novalidate>
+
+              <!-- Benchmark Scenario Presets -->
+              <div class="scenario-bar" role="group" aria-label="Benchmark Scenarios">
+                <span class="scenario-label">
+                  <svg viewBox="0 0 24 24" width="12" height="12" stroke="currentColor" fill="none" stroke-width="2" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                  Presets:
+                </span>
+                <div class="scenario-chips-group">
+                  <button type="button" class="btn-scenario active" data-preset="ord_storm" aria-pressed="true">ORD Winter Snow</button>
+                  <button type="button" class="btn-scenario" data-preset="atl_morning" aria-pressed="false">ATL Nominal VFR</button>
+                  <button type="button" class="btn-scenario" data-preset="den_blizzard" aria-pressed="false">DEN Blizzard Ops</button>
+                  <button type="button" class="btn-scenario" data-preset="dfw_evening" aria-pressed="false">DFW Peak Bank</button>
+                </div>
+              </div>
+
+              <!-- Group 1: Routing & Scheduled Horizon -->
+              <div class="fieldset-group">
+                <div class="fieldset-legend">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                  <span>1. Routing &amp; Scheduled Horizon</span>
+                </div>
+
+                <div class="form-row-duo">
+                  <div class="field-group">
+                    <label for="carrier-select">Operating Carrier</label>
+                    <select id="carrier-select" class="corp-input">
+                      <option value="UA">United Airlines (UAL)</option>
+                      <option value="AA">American Airlines (AAL)</option>
+                      <option value="DL">Delta Air Lines (DAL)</option>
+                      <option value="WN">Southwest Airlines (SWA)</option>
+                      <option value="AS">Alaska Airlines (ASA)</option>
+                      <option value="B6">JetBlue Airways (JBU)</option>
+                      <option value="NK">Spirit Airlines (NKS)</option>
+                      <option value="F9">Frontier Airlines (FFT)</option>
+                      <option value="OO">SkyWest Airlines (SKW)</option>
+                    </select>
+                  </div>
+
+                  <div class="field-group">
+                    <label for="day-select">Schedule Day of Week</label>
+                    <select id="day-select" class="corp-input">
+                      <option value="1">Monday (Business Outbound)</option>
+                      <option value="2">Tuesday (Midweek Standard)</option>
+                      <option value="3">Wednesday (Midweek Standard)</option>
+                      <option value="4">Thursday (Business Return)</option>
+                      <option value="5" selected>Friday (Weekend Volume Peak)</option>
+                      <option value="6">Saturday (Leisure Minimum)</option>
+                      <option value="7">Sunday (Inbound Return)</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-row-duo">
+                  <div class="field-group">
+                    <label for="origin-select">Origin Hub (Departure)</label>
+                    <select id="origin-select" class="corp-input">
+                      <option value="ORD">ORD &mdash; Chicago O'Hare International</option>
+                    </select>
+                  </div>
+
+                  <div class="field-group">
+                    <label for="dest-select">Destination (Arrival)</label>
+                    <select id="dest-select" class="corp-input">
+                      <option value="LGA">LGA &mdash; New York LaGuardia</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="slider-cell">
+                  <div class="slider-meta">
+                    <label for="dep-hour">Scheduled Out Time (Local ETD)</label>
+                    <span id="dep-hour-val" class="slider-val-readout">19:00 (19:00 LT)</span>
+                  </div>
+                  <input type="range" id="dep-hour" class="corp-range" min="5" max="23" value="19" step="1" aria-valuemin="5" aria-valuemax="23" aria-valuenow="19" aria-valuetext="19:00 Local Time">
+                  <div class="slider-range-limits">
+                    <span>05:00 Morning Bank</span>
+                    <span>14:00 Midday</span>
+                    <span>23:00 Night Push</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Group 2: Terminal Surface Meteorology -->
+              <div class="fieldset-group">
+                <div class="fieldset-legend">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"></path></svg>
+                  <span>2. Terminal Meteorology Scenario (T-120m Horizon)</span>
+                </div>
+
+                <div class="field-group">
+                  <div class="field-label-row">
+                    <label>Weather Phenomenon</label>
+                    <span class="field-helper">Simulated / Scenario Inputs at Origin</span>
+                  </div>
+                  <div class="weather-selector-grid" role="radiogroup" aria-label="Terminal Weather Condition">
+                    <button type="button" class="btn-metar" data-weather="clear" role="radio" aria-checked="false">
+                      <span class="code">VMC</span>
+                      <span class="desc">Clear Skies</span>
+                    </button>
+                    <button type="button" class="btn-metar" data-weather="rain" role="radio" aria-checked="false">
+                      <span class="code">-RA</span>
+                      <span class="desc">Rain Showers</span>
+                    </button>
+                    <button type="button" class="btn-metar" data-weather="storm" role="radio" aria-checked="false">
+                      <span class="code">TSRA</span>
+                      <span class="desc">Convective</span>
+                    </button>
+                    <button type="button" class="btn-metar active" data-weather="snow" role="radio" aria-checked="true">
+                      <span class="code">SN</span>
+                      <span class="desc">Snow/Freezing</span>
+                    </button>
+                    <button type="button" class="btn-metar" data-weather="fog" role="radio" aria-checked="false">
+                      <span class="code">FG/IFR</span>
+                      <span class="desc">Dense Fog/Ceilings</span>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="form-row-duo">
+                  <div class="slider-cell">
+                    <div class="slider-meta">
+                      <label for="wind-input">Sustained Surface Wind</label>
+                      <span id="wind-val" class="slider-val-readout">22 kt</span>
+                    </div>
+                    <input type="range" id="wind-input" class="corp-range" min="0" max="45" value="22" step="1" aria-valuemin="0" aria-valuemax="45" aria-valuenow="22" aria-valuetext="22 knots">
+                    <div class="slider-range-limits">
+                      <span>0 kt (Calm)</span>
+                      <span>45 kt (Gale)</span>
+                    </div>
+                  </div>
+
+                  <div class="slider-cell">
+                    <div class="slider-meta">
+                      <label for="vis-input">Surface Visibility</label>
+                      <span id="vis-val" class="slider-val-readout">1.5 miles</span>
+                    </div>
+                    <input type="range" id="vis-input" class="corp-range" min="0.5" max="10" value="1.5" step="0.5" aria-valuemin="0.5" aria-valuemax="10" aria-valuenow="1.5" aria-valuetext="1.5 statute miles">
+                    <div class="slider-range-limits">
+                      <span>0.5 sm (CAT I/II)</span>
+                      <span>10.0 sm (VFR)</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Group 3: Airfield Demand & Surface Congestion -->
+              <div class="fieldset-group">
+                <div class="fieldset-legend">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+                  <span>3. Airfield Demand &amp; Surface Queue (Simulated)</span>
+                </div>
+
+                <div class="slider-cell">
+                  <div class="slider-meta">
+                    <label for="queue-input">Hub Hourly Departure Demand</label>
+                    <span id="queue-val" class="slider-val-readout">45 departures/hr</span>
+                  </div>
+                  <input type="range" id="queue-input" class="corp-range" min="10" max="65" value="45" step="1" aria-valuemin="10" aria-valuemax="65" aria-valuenow="45" aria-valuetext="45 departures per hour">
+                  <div class="slider-range-limits">
+                    <span>10 dep/hr (Light flow)</span>
+                    <span>35 dep/hr (Nominal)</span>
+                    <span>65 dep/hr (Severe queue)</span>
+                  </div>
+                </div>
+              </div>
+
+              <input type="hidden" id="month-select" value="12">
+
+              <!-- Error Banner (Hidden by default) -->
+              <div id="form-error-banner" class="form-error-banner" role="alert" aria-live="polite">
+                <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" fill="none" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                <span id="form-error-msg">Inference service error. Inputs have been preserved.</span>
+              </div>
+
+              <!-- Submit Action Button -->
+              <button type="submit" id="btn-submit-predict" class="btn-dispatch-eval">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                <span>Evaluate Flight Delay Risk (T-120m)</span>
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <!-- Right Column: Results & Network Tactical Map -->
+        <div class="results-and-map-stack">
+
+          <!-- Primary Assessment Output Card -->
+          <div id="prediction-result" class="eval-result-card" role="region" aria-label="Risk Evaluation Diagnostics">
+
+            <!-- Default Placeholder State before submission -->
+            <div id="eval-placeholder" class="eval-placeholder">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
+              <h4>Operational Decision Support Ready</h4>
+              <p>Configure flight parameters on the left and select <strong>Evaluate Flight Delay Risk</strong> to execute deterministic TreeSHAP inference against the calibrated 0.21 threshold.</p>
+            </div>
+
+            <!-- Active Output State after evaluation -->
+            <div id="eval-active-container" class="eval-active-container">
+
+              <div id="result-banner" class="result-status-header status-alert">
+                <div class="status-left">
+                  <div id="status-icon-box" class="status-icon-box icon-alert" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+                  </div>
+                  <div class="status-headline">
+                    <h4 id="banner-title">DISPATCH ALERT: ELEVATED DEPARTURE DELAY RISK (HIGH)</h4>
+                    <p id="banner-subtitle">Predicted probability exceeds the calibrated operational threshold (0.21). Recommend proactive gate turnaround buffer and tail swap contingency.</p>
+                  </div>
+                </div>
+                <div class="status-metrics">
+                  <div class="metric-column">
+                    <div id="gauge-prob-val" class="val" style="color: var(--status-rose)">42.5%</div>
+                    <div class="ref">P(Delay &ge; 15m) &bull; Cutoff: 21.0%</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- TreeSHAP Audit Section -->
+              <div class="shap-audit-section">
+                <div class="section-caption">
+                  <h5>Feature Attribution Diagnostic (TreeSHAP Additive Log-Odds)</h5>
+                  <span>Decomposition relative to global base rate (22.91%)</span>
+                </div>
+
+                <div class="table-responsive-wrapper">
+                  <table class="attribution-table">
+                    <thead>
+                      <tr>
+                        <th style="width: 25%;">Feature Variable</th>
+                        <th style="width: 18%;">Observed Value</th>
+                        <th style="width: 17%;">Impact (&Delta; Log-Odds)</th>
+                        <th style="width: 40%;">Operational Interpretation</th>
+                      </tr>
+                    </thead>
+                    <tbody id="factors-table-body">
+                      <!-- Rendered dynamically -->
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div class="audit-footer-strip">
+                <span>Inference Latency: <strong id="latency-val" style="color: var(--aviation-sky-light)">14.8 ms</strong></span>
+                <span>LightGBM Booster &bull; Deterministic TreeSHAP &bull; Operational Guidance Only</span>
+              </div>
+
+            </div>
+
+          </div>
+
+          <!-- Supporting Context: National Airspace Network Map -->
+          <div class="card-container">
+            <div class="card-titlebar">
+              <div class="titlebar-left">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon><line x1="8" y1="2" x2="8" y2="18"></line><line x1="16" y1="6" x2="16" y2="22"></line></svg>
+                <h3>National Airspace Network (Top 50 Hubs)</h3>
+              </div>
+              <span class="card-badge">Tier-1 Commercial Hubs</span>
+            </div>
+
+            <div class="card-body">
+              <div class="map-frame">
+                <div id="flight-map" aria-label="Interactive US Hub Map"></div>
+              </div>
+
+              <div class="map-control-bar">
+                <div class="map-legend-pills">
+                  <span class="legend-chip"><i class="legend-sq sq-green"></i> Baseline &lt; 20%</span>
+                  <span class="legend-chip"><i class="legend-sq sq-amber"></i> 20% &ndash; 25%</span>
+                  <span class="legend-chip"><i class="legend-sq sq-rose"></i> Baseline &gt; 25%</span>
+                </div>
+                <span class="map-disclaimer">Airport nodes reflect annual historical baseline metrics; flight risk is evaluated above.</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- =====================================================================
+         TAB 2: BUSINESS CASE & PROBLEM FORMULATION
+         ===================================================================== -->
+    <section id="tab-business-case" class="tab-pane" role="tabpanel" aria-labelledby="tab-business-case">
+
+      <div class="panel-header-strip">
+        <div class="strip-title">
+          <h2>Business Case &amp; Problem Formulation</h2>
+          <p>Economic justification, asymmetric loss modeling, and statistical guardrails governing pre-departure delay mitigation in commercial airline networks.</p>
+        </div>
+      </div>
+
+      <div class="dossier-grid">
+
+        <!-- Card 1 -->
+        <div class="dossier-card">
+          <span class="dossier-tag tag-blue">Cost Governance</span>
+          <h4>The $33.2B Annual Disruption Burden</h4>
+          <p>According to the FAA Office of Aviation Policy and Plans (APO), commercial flight delays impose an annual economic impact of $33.2 billion across the United States ($18.1B airline operating costs, $8.3B passenger value of time, $6.8B lost indirect economic output). The direct aircraft operating cost (AOC) per block minute of delay averages $101.18.</p>
+          <div class="dossier-metric-box">
+            <div class="metric-label">Direct Operating Cost</div>
+            <div class="metric-data">$101.18 / min</div>
+            <div class="metric-note">FAA Form 41 / APO Commercial Aircraft Cost Standard</div>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="dossier-card">
+          <span class="dossier-tag tag-amber">Statistical Integrity</span>
+          <h4>The 81% Majority Class Accuracy Fallacy</h4>
+          <p>Roughly 77% to 81% of commercial departures operate on time (DEP_DEL15 = 0). A trivial baseline predicting every flight on time achieves ~81% accuracy while delivering zero operational utility. Operational decision-making requires optimizing Precision-Recall AUC (PR-AUC) and strictly calibrated probability distributions.</p>
+          <div class="dossier-metric-box">
+            <div class="metric-label">Production Champion Metric</div>
+            <div class="metric-data">0.4137 PR-AUC</div>
+            <div class="metric-note">+15.6% lift over heuristic floor (0.3580) with Brier Score = 0.1690 (2025 Test Holdout)</div>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="dossier-card">
+          <span class="dossier-tag tag-slate">Operational Horizon</span>
+          <h4>The Strict T-120 Min Decision Horizon</h4>
+          <p>Inference is conducted exactly 2 hours prior to scheduled departure. At T-120min, airlines retain actionable intervention windows: tail swaps, reserve crew call-outs under 14 CFR Part 117 rest rules, and Collaborative Decision Making (CDM) slot swaps. Features are strictly scoped to prevent target leakage.</p>
+          <div class="dossier-metric-box">
+            <div class="metric-label">Operational Cutoff Window</div>
+            <div class="metric-data">T - 120 Minutes</div>
+            <div class="metric-note">Zero pushback, boarding, or downstream data leakage</div>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- =====================================================================
+         TAB 3: NETWORK ANALYTICS (EDA)
+         ===================================================================== -->
+    <section id="tab-network-eda" class="tab-pane" role="tabpanel" aria-labelledby="tab-network-eda">
+
+      <div class="panel-header-strip">
+        <div class="strip-title">
+          <h2>Network Analytics &amp; Empirical Findings</h2>
+          <p>Empirical patterns identified across 5.4 million BTS domestic scheduled flights (2025) and automated terminal ASOS surface weather observations.</p>
+        </div>
+      </div>
+
+      <div class="charts-grid">
+
+        <!-- Plot 1 -->
+        <div class="chart-card">
+          <div class="chart-preview-frame">
+            <img src="/figures/01_diurnal_delay_curve.png" alt="24-Hour Diurnal Delay Propagation Curve" loading="lazy">
+            <span class="zoom-indicator">CLICK TO EXPAND</span>
+          </div>
+          <div class="chart-desc-body">
+            <h4>Diurnal Delay Propagation Wave (24-Hour Profile)</h4>
+            <p>Flight delay rates exhibit severe intra-day escalation. While morning banks (06:00&ndash;08:00 LT) maintain low baseline delay frequencies (7.8%), delay rates climb monotonically to peak between 18:00 and 21:00 LT (33.4%) as schedule slack is consumed across sequential aircraft tail rotations.</p>
+          </div>
+        </div>
+
+        <!-- Plot 2 -->
+        <div class="chart-card">
+          <div class="chart-preview-frame">
+            <img src="/figures/02_carrier_delay_ranking.png" alt="Carrier Performance Disparity" loading="lazy">
+            <span class="zoom-indicator">CLICK TO EXPAND</span>
+          </div>
+          <div class="chart-desc-body">
+            <h4>Carrier Operational Disparities &amp; Volume Share</h4>
+            <p>Analysis of 14 major carriers reveals clear variance in delay resilience. Carriers with highly banked hub-and-spoke models experience higher cascade vulnerability during afternoon disruption compared to point-to-point network carriers.</p>
+          </div>
+        </div>
+
+        <!-- Plot 3 -->
+        <div class="chart-card">
+          <div class="chart-preview-frame">
+            <img src="/figures/03_top50_hub_congestion.png" alt="Top 50 Hub Congestion Rankings" loading="lazy">
+            <span class="zoom-indicator">CLICK TO EXPAND</span>
+          </div>
+          <div class="chart-desc-body">
+            <h4>Hub Geometric &amp; Airspace Vulnerability Rankings</h4>
+            <p>Rankings across the Top 50 origin hubs highlight structural constraints. Airports with converging runways or complex airspace sharing (ORD, DFW, EWR) show elevated delay baselines compared to isolated high-capacity hubs (PHX, SLC).</p>
+          </div>
+        </div>
+
+        <!-- Plot 4 -->
+        <div class="chart-card">
+          <div class="chart-preview-frame">
+            <img src="/figures/05_weather_bivariate_lift.png" alt="Terminal Weather Lift vs Baseline" loading="lazy">
+            <span class="zoom-indicator">CLICK TO EXPAND</span>
+          </div>
+          <div class="chart-desc-body">
+            <h4>Terminal Meteorological Forcing vs. Baseline Lift</h4>
+            <p>Terminal weather conditions act as non-linear delay amplifiers. While light precipitation introduces marginal delay risk, convective activity (TSRA) and freezing precipitation combined with peak runway demand drive departure delay probability beyond 50%.</p>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- =====================================================================
+         TAB 4: MODEL ARCHITECTURE & GOVERNANCE
+         ===================================================================== -->
+    <section id="tab-model-governance" class="tab-pane" role="tabpanel" aria-labelledby="tab-model-governance">
+
+      <div class="panel-header-strip">
+        <div class="strip-title">
+          <h2>Model Architecture &amp; Governance</h2>
+          <p>Systematic benchmark evaluation across 6 model candidates, asymmetric cost optimization, and operational monitoring standards.</p>
+        </div>
+      </div>
+
+      <!-- Comparison Leaderboard Table -->
+      <div class="card-container" style="margin-bottom: var(--space-6);">
+        <div class="card-titlebar">
+          <div class="titlebar-left">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>
+            <h3>Candidate Benchmark Leaderboard (Held-Out Test Set: Nov 1 &ndash; Dec 31, 2025)</h3>
+          </div>
+          <span class="card-badge">N = 885,822 Flights</span>
+        </div>
+
+        <div class="table-responsive-wrapper">
+          <table class="corp-table">
+            <thead>
+              <tr>
+                <th style="min-width: 220px;">Architecture Candidate</th>
+                <th>PR-AUC <span class="metric-opt-pill opt-max" title="Precision-Recall Area Under Curve: Higher is better">&uarr; Max</span></th>
+                <th>ROC-AUC <span class="metric-opt-pill opt-max" title="Receiver Operating Characteristic AUC: Higher is better">&uarr; Max</span></th>
+                <th>Brier Score <span class="metric-opt-pill opt-min" title="Probability Mean Squared Error: Lower is better (0.0 is perfect)">&darr; Min</span></th>
+                <th>Recall (@ &tau;*=0.21) <span class="metric-opt-pill opt-max" title="Proportion of true delayed flights identified">&uarr; Max</span></th>
+                <th>P95 Latency <span class="metric-opt-pill opt-min" title="Inference response time under SLA">&darr; Min</span></th>
+                <th>Memory Size <span class="metric-opt-pill opt-min" title="In-memory booster artifact footprint">&darr; Min</span></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Baseline Heuristic 2 (Carrier &times; Origin &times; Hour)</td>
+                <td>0.3580</td>
+                <td>0.6564</td>
+                <td>0.1738</td>
+                <td>67.8%</td>
+                <td>&lt; 0.1 ms</td>
+                <td>45 KB</td>
+              </tr>
+              <tr>
+                <td>Model 1: Calibrated L2 Logistic Regression</td>
+                <td>0.3921</td>
+                <td>0.6755</td>
+                <td>0.1713</td>
+                <td>62.6%</td>
+                <td>2.1 ms</td>
+                <td>180 KB</td>
+              </tr>
+              <tr>
+                <td>Model 2: CatBoost Gradient Booster</td>
+                <td>0.4081</td>
+                <td>0.6882</td>
+                <td>0.1681</td>
+                <td>73.1%</td>
+                <td>42.0 ms</td>
+                <td>14.8 MB</td>
+              </tr>
+              <tr class="champion-row">
+                <td>
+                  <strong>Model 3: LightGBM Gradient Boosted Tree</strong>
+                  <span class="tag-champion">PRODUCTION CHAMPION</span>
+                </td>
+                <td><strong>0.4137</strong></td>
+                <td><strong>0.6918</strong></td>
+                <td><strong>0.1690</strong></td>
+                <td><strong>61.8%</strong></td>
+                <td><strong>14.8 ms</strong></td>
+                <td><strong>1.2 MB</strong></td>
+              </tr>
+              <tr>
+                <td>
+                  <span>Model 4: Blended Meta-Ensemble</span>
+                  <span class="card-badge" style="margin-left: 6px; font-size: 0.65rem;">RESEARCH BENCHMARK</span>
+                </td>
+                <td>0.4136</td>
+                <td>0.6917</td>
+                <td>0.1690</td>
+                <td>62.3%</td>
+                <td>58.5 ms</td>
+                <td>16.0 MB</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Structured Selection Rationale Grid -->
+      <div class="rationale-comparison-grid">
+
+        <div class="comparison-box">
+          <h4>
+            <span>LightGBM vs. Blended Meta-Ensemble</span>
+            <span class="card-badge">Selected: LightGBM</span>
+          </h4>
+          <p>On the 2025 held-out test set, standalone LightGBM delivers 0.4137 PR-AUC, matching the Blended Ensemble (0.4136) while achieving 3.9x lower latency (14.8 ms vs 58.5 ms) and 13.3x smaller memory footprint (1.2 MB vs 16.0 MB). Dual-model ensembling introduces unnecessary operational complexity with zero empirical benefit.</p>
+          <div class="comparison-metrics-list">
+            <div class="comp-metric-row"><span>Latency Delta:</span> <strong>-43.7 ms (-74.7%)</strong></div>
+            <div class="comp-metric-row"><span>Memory Footprint:</span> <strong>1.2 MB vs 16.0 MB</strong></div>
+            <div class="comp-metric-row"><span>PR-AUC Parity:</span> <strong>100.0% of Ensemble</strong></div>
+          </div>
+        </div>
+
+        <div class="comparison-box">
+          <h4>
+            <span>LightGBM vs. Logistic Regression</span>
+            <span class="card-badge">Lift: +0.0216 PR-AUC</span>
+          </h4>
+          <p>Linear models fail to capture non-linear interactions between terminal surface weather (dew point depression, wind gusts) and runway congestion queues. LightGBM's gradient boosting creates orthogonal tree partitions that uncover compounding delay thresholds.</p>
+          <div class="comparison-metrics-list">
+            <div class="comp-metric-row"><span>PR-AUC Lift:</span> <strong>+0.0216 (+5.5%)</strong></div>
+            <div class="comp-metric-row"><span>ROC-AUC Lift:</span> <strong>+0.0163 (0.6918 vs 0.6755)</strong></div>
+            <div class="comp-metric-row"><span>Brier Calibration:</span> <strong>0.1690 vs 0.1713</strong></div>
+          </div>
+        </div>
+
+        <div class="comparison-box">
+          <h4>
+            <span>LightGBM vs. CatBoost</span>
+            <span class="card-badge">Speed: 2.8x Faster</span>
+          </h4>
+          <p>LightGBM outperforms CatBoost on the test holdout (0.4137 vs 0.4081 PR-AUC) with higher precision (36.6% vs 33.3%). LightGBM's histogram binning and leaf-wise tree growth yield 2.8x faster scoring and a compact 1.2 MB booster file suitable for low-latency microservice containerization.</p>
+          <div class="comparison-metrics-list">
+            <div class="comp-metric-row"><span>Inference Speedup:</span> <strong>2.8x (14.8ms vs 42.0ms)</strong></div>
+            <div class="comp-metric-row"><span>Model Artifact Size:</span> <strong>1.2 MB vs 14.8 MB</strong></div>
+            <div class="comp-metric-row"><span>PR-AUC Margin:</span> <strong>+0.0056</strong></div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Asymmetric Cost Optimization Matrix -->
+      <div class="cost-matrix-card">
+        <h4>Threshold Optimization: Empirical Validation &tau;* = 0.21 &amp; Operating Cost Context</h4>
+        <p>The operational threshold &tau;* = 0.21 was determined empirically by maximizing F1 score on the validation split (Sep&ndash;Oct 2025). In airline ground operations, decision errors have asymmetric impact: an unanticipated delay carries an estimated operational cost of ~$4,500 (missed turnaround slots, pilot duty limits, cascade disruptions), whereas a proactive turnaround buffer cushion costs ~$300. Under the classical theoretical cost formula &tau;<sub>cost</sub> = 300 / (300 + 4500) &approx; 0.0625, the system would flag &gt;65% of all flights, triggering severe dispatcher alarm fatigue. The empirical F1-optimal threshold &tau;* = 0.21 was selected as a defensible operating compromise, capturing 61.8% of test delays with a 36.6% alert precision.</p>
+
+        <div class="matrix-grid">
+          <div class="matrix-quadrant cost-severe">
+            <h5>False Negative (Missed Disruption)</h5>
+            <div class="cost-val" style="color: var(--status-rose)">~$4,500 / event (Operating Assumption)</div>
+            <div class="cost-desc">Unanticipated delay causing gate gridlock, passenger misconnects, aircraft tail swapping delays, and crew rest violations under 14 CFR Part 117.</div>
+          </div>
+
+          <div class="matrix-quadrant cost-manageable">
+            <h5>False Positive (Proactive Buffer)</h5>
+            <div class="cost-val" style="color: var(--aviation-sky-light)">~$300 / event (Operating Assumption)</div>
+            <div class="cost-desc">Proactive buffer turnaround preparation, early baggage staging, and ramp crew alerting. Low marginal cost relative to unplanned network disruption.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Global TreeSHAP Summary Plot -->
+      <div class="card-container">
+        <div class="card-titlebar">
+          <div class="titlebar-left">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+            <h3>Global Feature Importance (TreeSHAP Summary Attribution)</h3>
+          </div>
+          <span class="card-badge">Full Population Validation</span>
+        </div>
+        <div class="card-body">
+          <div class="chart-preview-frame" style="height: 480px;">
+            <img src="/figures/15_shap_summary.png" alt="Global TreeSHAP Summary Feature Importance Plot" loading="lazy">
+            <span class="zoom-indicator">CLICK TO EXPAND</span>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- Inspection Modal for High-Resolution Figures -->
+  <div id="img-modal" class="corp-modal" role="dialog" aria-modal="true" aria-label="High-Resolution Figure Inspection">
+    <div class="modal-viewport">
+      <button id="modal-close" class="btn-close-modal" aria-label="Close modal view">&times;</button>
+      <img id="modal-img" src="" alt="Expanded View of Selected Figure">
+    </div>
+  </div>
+
+  <!-- Corporate Footer -->
+  <footer class="corp-footer" role="contentinfo">
+    <div>
+      <strong>AeroPredict IO™</strong> &mdash; Production Operations Research &amp; Flight Disruption Governance
+    </div>
+    <div class="spec-info">
+      FAA-BTS-2025 SPECIFICATION &bull; MODEL ID: LGB_CHAMPION_V1 &bull; ZERO DATA LEAKAGE (T-120M)
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="/static/app.js"></script>
+</body>
+</html>

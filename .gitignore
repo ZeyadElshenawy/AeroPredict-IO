@@ -1,4 +1,4 @@
-﻿# Python
+# Python
 __pycache__/
 *.py[cod]
 *$py.class
@@ -9,5 +9,15 @@ build/
 .pytest_cache/
 .ruff_cache/
 .env
+
+# Scratch and temporary work
+scratch/
+*.log
+
 # Raw source data (keep local, do not commit)
 /data/raw/
+*.audit_cache*.json
+catboost_info/
+mlruns/
+mlflow.db
+.trash/

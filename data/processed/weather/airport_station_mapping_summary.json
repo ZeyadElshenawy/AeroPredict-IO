@@ -1,0 +1,30 @@
+{
+  "generated_at": "2026-10-20T21:38:56.644839+00:00",
+  "inventory_source": "data\\raw\\weather\\airport_inventory.csv",
+  "inventory_records": 352,
+  "inventory_flight_count": 6879484,
+  "catalogue_source": "data\\raw\\weather\\weather-station-catalogue.csv",
+  "catalogue_sha256": "2c8f8f8e28f51123e8aa2e45077601df0d32eaa5f1568e21ef0b317220f59da3",
+  "catalogue_total_stations": 6047,
+  "total_airports_mapped": 352,
+  "match_type_counts": {
+    "EXACT_IATA_ON_AIRPORT": 310,
+    "ICAO_PREFIX_ON_AIRPORT": 8,
+    "AIRPORT_FACILITY_COORDINATE_MATCH": 34
+  },
+  "distance_summary_km": {
+    "min": 0.0,
+    "max": 3.417,
+    "mean": 0.509,
+    "median": 0.342,
+    "p95": 1.583
+  },
+  "on_airport_count_le_5km": 352,
+  "active_2025_archive_count": 352,
+  "flagged_review_count": 0,
+  "files_generated": [
+    "data\\processed\\weather\\airport_station_mapping.csv",
+    "data\\processed\\weather\\airport_station_candidates.csv",
+    "data\\processed\\weather\\airport_station_mapping_summary.json"
+  ]
+}

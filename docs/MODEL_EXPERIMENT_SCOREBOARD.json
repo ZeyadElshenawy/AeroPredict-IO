@@ -1,0 +1,86 @@
+{
+  "timestamp": "2026-10-23 16:23:47 UTC",
+  "validation_flights": 908968,
+  "validation_delayed_flights": 172426,
+  "validation_base_rate": 18.97,
+  "models": [
+    {
+      "model_name": "Baseline Heuristic 2 (Carrier x Origin x Hour)",
+      "roc_auc": 0.6798,
+      "pr_auc": 0.3132,
+      "brier_score": 0.1462,
+      "default_threshold_0_5": {
+        "accuracy_pct": 80.86,
+        "precision": 0.443,
+        "recall": 0.0344,
+        "f1_score": 0.0638
+      },
+      "optimal_f1_threshold": {
+        "threshold_tau": 0.24,
+        "f1_score": 0.3939,
+        "precision": 0.2826,
+        "recall": 0.6497
+      }
+    },
+    {
+      "model_name": "Model 1: Logistic Regression (Baseline Features)",
+      "roc_auc": 0.6685,
+      "pr_auc": 0.2994,
+      "brier_score": 0.1479,
+      "default_threshold_0_5": {
+        "accuracy_pct": 80.95,
+        "precision": 0.391,
+        "recall": 0.0071,
+        "f1_score": 0.014
+      },
+      "optimal_f1_threshold": {
+        "threshold_tau": 0.24,
+        "f1_score": 0.3864,
+        "precision": 0.2704,
+        "recall": 0.6766
+      }
+    },
+    {
+      "model_name": "Model 2: LightGBM (Baseline Features)",
+      "roc_auc": 0.6761,
+      "pr_auc": 0.3059,
+      "brier_score": 0.1507,
+      "default_threshold_0_5": {
+        "accuracy_pct": 81.03,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0.0
+      },
+      "optimal_f1_threshold": {
+        "threshold_tau": 0.23,
+        "f1_score": 0.3913,
+        "precision": 0.2813,
+        "recall": 0.6426
+      }
+    },
+    {
+      "model_name": "Model 3: Challenger LightGBM (+ Terminal Weather)",
+      "roc_auc": 0.6976,
+      "pr_auc": 0.3497,
+      "brier_score": 0.1416,
+      "default_threshold_0_5": {
+        "accuracy_pct": 81.18,
+        "precision": 0.5389,
+        "recall": 0.0541,
+        "f1_score": 0.0983
+      },
+      "optimal_f1_threshold": {
+        "threshold_tau": 0.21,
+        "f1_score": 0.4072,
+        "precision": 0.3107,
+        "recall": 0.5905
+      }
+    }
+  ],
+  "uplifts": {
+    "logistic_regression_vs_heuristic_floor_pr_auc": -0.0138,
+    "lightgbm_baseline_vs_heuristic_floor_pr_auc": -0.0073,
+    "weather_uplift_over_schedule_pr_auc": 0.0438,
+    "weather_relative_lift_pct": 14.32
+  }
+}
